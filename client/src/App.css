@@ -1,0 +1,142 @@
+.App {
+  font-size: calc(16px + 2vmin);
+  width: 60vw;
+  margin-left: auto;
+  margin-right: auto;
+margin-top: 10vw;
+}
+h1 {
+
+  display: inline;
+
+ margin: 0;
+  font-family: "Roboto", sans-serif;
+  color: #7f5a83;
+  
+  font-size: calc(28px + (28 - 12) * ((100vw - 500px) / (1600 - 300)));
+}
+input {
+  border-radius: 8px;
+  height: 2.5vw;
+  border: none;
+  width: 49vw;
+  background-color: #9da2ab;
+  color: #0d324d;
+  font-size: calc(10px + (10 + 2) * ((100vw - 300px) / (1600 - 300)));
+  padding-left: 1vw;
+}
+.modalInput {
+  width: 39vw;
+}
+.submit {
+  border-radius: 8px;
+  height: 2.5vw;
+  border: none;
+  width: 9vw;
+  margin-left: 1vw;
+  background-color: black;
+  color: #9da2ab;
+  font-size: calc(5px + (8 + 8) * ((100vw - 300px) / (1600 - 300)));
+}
+button {
+  border-radius: 8px;
+  height: 2.5vw;
+  border: none;
+  width: 9vw;
+  margin-left: 1vw;
+  background-color: black;
+  color: #9da2ab;
+  font-size: calc(5px + (8 + 8) * ((100vw - 300px) / (1600 - 300)));
+}
+.navbar {
+  display: grid;
+  grid-template-columns: repeat(2 auto);
+  background: black;
+  width: 100%;
+  position: sticky;
+  top: 0;
+ 
+}
+.navLinksWrapper {
+  display: flex;
+  grid-column: 2 / span 1;
+  align-items: flex-end;
+  justify-content: space-evenly;  
+  
+}
+.navItems{
+  
+  color: #9da2ab;
+  font-size: calc(5px + (8 + 8) * ((100vw - 200px) / (1600 - 300)));
+}
+
+input:focus {
+  outline: none;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+button:focus {
+  outline: none;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+.checkbox {
+  width: 1.5vw;
+  height: 1.5vw;
+  outline: 0.1vw solid black !important;
+}
+li {
+  padding: 15px;
+  margin-bottom: 15px;
+  background: #7f5a83;
+  border-radius: 8px;
+  overflow-wrap: break-word;
+  cursor: pointer;
+  color: #0d324d;
+}
+
+.showModal {
+  display: block;
+  
+}
+.hideModal {
+  display: none;
+}
+.displayFlash {
+ display: inline;
+  background-color: rgb(209, 80, 80);
+  border-radius: 8px;
+  margin-left: 1.2vw;
+  font-size: calc(5px + (8 + 8) * ((100vw - 200px) / (1600 - 300)));
+  color: black;
+  padding: 1vw;
+}
+.displayFlashSuccess {
+  display: inline;
+   background-color: green;
+   border-radius: 8px;
+   margin-left: 1.2vw;
+   font-size: calc(5px + (8 + 8) * ((100vw - 200px) / (1600 - 300)));
+   color: black;
+   padding: 1vw;
+ }
+.hideFlash {
+  display: none;
+}
+.date {
+  margin-top: 5px;
+  font-size: calc(8px + 0.1vmin);
+  color: #9da2ab;
+  width: 60vw;
+}
+.showInput {
+  display: block;
+}
+.hideInput {
+  display: none;
+}

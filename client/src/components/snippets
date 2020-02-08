@@ -1,0 +1,28 @@
+
+const foundElement = `tasks.${req.params.editableId}`;
+  User.findByIdAndUpdate(
+    { _id: req.user._id,  },
+    { "$set": { "tasks.$.action": req.params.action}},
+    function(err,user) {
+        if(err) {
+          console.log(err);
+        }
+
+    }
+  );
+User.updateOne(
+  {_id: req.params.editableId},
+  {action: req.params.action, edited: req.params.edited }
+)
+
+{action: req.params.action, edited: req.params.edited }
+
+"/todos/:action/:edited"
+
+router.get("/todos", (req, res, next) => {
+  //this will return all the data, exposing only the id and action field to the client
+  user.find({})
+    .then(data => res.json(data))
+    .catch(next);
+});
+,todo-shard-00-01-esnwx.mongodb.net:27017,todo-shard-00-02-esnwx.mongodb.net:27017/test?ssl=true&replicaSet=Todo-shard-0&authSource=admin&retryWrites=true,todo-shard-00-01-esnwx.mongodb.net:27017,todo-shard-00-02-esnwx.mongodb.net:27017/test?ssl=true&replicaSet=Todo-shard-0&authSource=admin&retryWrites=true
