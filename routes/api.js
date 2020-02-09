@@ -3,7 +3,7 @@ const router = express.Router();
 const Todo = require("../models/todo");
 const User = require('../models/users');
 
-router.get("/todos", (req, res, next) => {
+router.get("/get/todos", (req, res, next) => {
   console.log('im in getting todos');
   //this will return all the data, exposing only the id and action field to the client
   const userid = req.user._id
@@ -34,10 +34,27 @@ router.post("/todos", (req, res, next) => {
   }
 });
 
-router.delete("/todos/:id", (req, res, next) => {
-  User.findOneAndDelete({ _id: req.params.id })
-    .then(data => res.json(data))
-    .catch(next);
+router.delete("/delete/todos/:id", (req, res, next) => {
+  console.log('im in deleting todos', req.params.id);
+  User.findById(req.user._id, function(err, user) {
+
+    ///Some Javascript to manipulate the tasks array
+   let array = user.tasks;
+
+   //find the index of the element in array that has the given id
+//use that index to splice the array and remove that element
+//set the old array to the new array
+ array.splice(array.findIndex((element) => element.id === req.params.id), 1);
+      
+    if (err) throw err;
+    
+    //save the updated array by saving the entire user object
+    user.save(function(err){
+      if(err) throw err;
+    })  
+     })
+     const success = 'Successful Deletion';
+     return res.json({success});
 });
 
 /*Terry made this one as a first step toward editing db posts. I think it should identify a post by its id and allow me to call a function to update its contents, but idk*/

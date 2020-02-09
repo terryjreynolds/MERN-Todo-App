@@ -52,7 +52,7 @@ and their corresponding id*/
 
   getTodos = () => {
     axios
-      .get("/api/todos")
+      .get("/api/get/todos")
       .then(res => {
         if (res.data) {
           console.log("resdata", res.data);
@@ -71,9 +71,10 @@ and their corresponding id*/
 
   /* function follows the axios route to delete a db entry
 upon click of the todo item itself-TJR*/
-  deleteTodo = id => {
+  deleteTodo = (id) => {
+    
     axios
-      .delete(`/api/todos/${id}`)
+      .delete(`/api/delete/todos/${id}`)
       .then(res => {
         if (res.data) {
           this.getTodos();
@@ -139,7 +140,7 @@ upon click of the todo item itself-TJR*/
       <div>
         
           <h1>{name}</h1>
-        
+          
         <Modal
           cancelEditing={this.cancelEditing}
           modalUpdate={this.modalUpdate}

@@ -147,8 +147,18 @@ if (!errors.isEmpty()) {
           username: req.user.username
       };
       res.send(userInfo);
+      
   }
   
+    );
+
+    //Logout post route
+    router.post('/logout', function(req, res){
+        console.log('in logout');
+      req.logout();
+      
+      res.redirect('/');
+    },
     );
 
 module.exports = router;

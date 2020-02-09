@@ -47,6 +47,7 @@ class Login extends React.Component {
     e.preventDefault();
     const data = new FormData(e.target);
     const self = this;
+  
     axios.post ('/users/login', {
       
      
@@ -56,10 +57,17 @@ class Login extends React.Component {
     })
     .then(function (res) {
       console.log('response', res.data.username);
+     
       self.setState({sessionUserName: res.data.username
         
       });
       self.setState({toHome: true});
+      if (document.cookie.split(';').filter((item) => item.trim().startsWith('reader=')).length) {
+        console.log('The cookie "reader" exists (ES6)')
+    }else{
+      console.log('sessionfalse');
+    }
+      
     })
   }
 
