@@ -132,8 +132,9 @@ upon click of the todo item itself-TJR*/
 
   render() {
     let { todos } = this.state;
+    console.log('todos', todos);
     const defaultTitle = 'The Obligatory Todo App';
-    const name = `${!this.state.username  ? defaultTitle : `Welcome, ${this.state.username}!`}`;
+    const name = `${!todos.username  ? defaultTitle : `Welcome, ${this.state.username}!`}`;
    
     return (
       

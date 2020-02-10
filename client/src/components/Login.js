@@ -61,12 +61,9 @@ class Login extends React.Component {
       self.setState({sessionUserName: res.data.username
         
       });
+     
       self.setState({toHome: true});
-      if (document.cookie.split(';').filter((item) => item.trim().startsWith('reader=')).length) {
-        console.log('The cookie "reader" exists (ES6)')
-    }else{
-      console.log('sessionfalse');
-    }
+    
       
     })
   }
@@ -74,7 +71,9 @@ class Login extends React.Component {
   render() {
     //conditionally rendering the home page
     // const name = this.state.sessionUserName;
+    //Also, using a function passed from app.js to update its loggedIn state
     if (this.state.toHome === true) {
+      this.props.setUserState(true);
       return <Redirect to={{
         pathname: '/',
         state: { username: this.state.sessionUserName }

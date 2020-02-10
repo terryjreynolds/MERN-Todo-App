@@ -157,7 +157,8 @@ if (!errors.isEmpty()) {
         console.log('in logout');
       req.logout();
       
-      res.redirect('/');
+    //   res.redirect('/');
+      return res.json('Successfully Logged Out');
     },
     );
 
