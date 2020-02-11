@@ -139,7 +139,7 @@ upon click of the todo item itself-TJR*/
     return (
       
       <div>
-        
+      
           <h1>{name}</h1>
           
         <Modal

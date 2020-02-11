@@ -140,3 +140,34 @@ li {
 .hideInput {
   display: none;
 }
+.dropDownMenu  {
+  width: 110%;
+    
+    background-color: black;
+   
+    border-radius: 8px;
+    list-style: none;
+}
+.menuWrapper {
+  position: absolute;
+    top: 60%;
+    left: 87%; 
+    border-radius: 8px   
+}
+.dropDownButton {
+  margin: 0;
+  vertical-align: bottom;
+  background-color: black;
+  color: #9da2ab;
+  cursor: pointer; 
+  font-size:  calc(5px + (8 + 8) * ((100vw - 200px) / (1600 - 300)));
+}
+.dropDownButtonHidden {
+  display: none;
+}
+ a:hover, .dropDownButton:hover  {
+  opacity: .8;
+}
+.signUpHidden {
+  display: none;
+}

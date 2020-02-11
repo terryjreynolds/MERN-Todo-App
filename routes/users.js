@@ -156,9 +156,8 @@ if (!errors.isEmpty()) {
     router.post('/logout', function(req, res){
         console.log('in logout');
       req.logout();
-      
-    //   res.redirect('/');
-      return res.json('Successfully Logged Out');
+    //return an object with a redirect url to use 
+      return res.json({redirect: "/"});
     },
     );
 

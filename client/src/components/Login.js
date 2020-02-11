@@ -57,7 +57,7 @@ class Login extends React.Component {
     })
     .then(function (res) {
       console.log('response', res.data.username);
-     
+    //  self.props.setUrlState("/Todo");
       self.setState({sessionUserName: res.data.username
         
       });
@@ -75,7 +75,7 @@ class Login extends React.Component {
     if (this.state.toHome === true) {
       this.props.setUserState(true);
       return <Redirect to={{
-        pathname: '/',
+        pathname: '/Todo',
         state: { username: this.state.sessionUserName }
     }}
 />

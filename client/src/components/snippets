@@ -8,10 +8,34 @@
       [*] establish a state function in app.js (loggedIn)
       [*] set the value of the login button text to jsx of loggedIn state
       [*] write a function in app.js to set the state of loggedIn
-      [] pass the function as props to login.js and to navbar.js
+      [*] pass the function as props to login.js and to navbar.js
       [*] somehow make the login/logout button choose what to do on click based on
       app.js state
       [*] at line 64 login component, call the function to set the state of app.js 
       to true.
       [] LOGOUT: while the login button is "login", it needs to use the props 
       function to set the state of app.js loggedIn to false.
+
+      The navbar gets rendered on submit of login. At that point, loggedIn = true. When the user
+      clicks on the logout button, it sends an http request and when the json returns 
+      the loggedIn gets set to false, triggering a rerender of app.js and thus navbar too
+      So, if in compoent did mount, i set the state of url based on a check of
+      userAuthState, I can reliably use that url state to set the link destination.
+
+      [*] make a componentDidMount in Navbar.
+      [] Have the function set state.url to "/" if userAuthState === false and "/login 
+      if userAuthState === true
+      [] use jsx to use state.url to determine link destination
+
+      Not working. Still goes to login page and logout is still displayed.
+
+Can't rely on componentDidMount since navbar only mounts on page load.
+
+But what if I set state, will it mount?
+
+
+
+
+
+ 
+  

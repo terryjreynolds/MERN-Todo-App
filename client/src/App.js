@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Navbar from './components/Navbar';
-
+import Dashboard from './components/Dashboard';
 
 class App extends Component{
 
@@ -37,7 +37,8 @@ this.setState({
     <Navbar userAuthState= { this.state } setUserState = { this.setUserState }/>
     <div  className="App">
       <Switch>
-<Route exact path='/' component={Todo} />
+      <Route exact path='/' component={Dashboard} />
+<Route exact path='/Todo' component={Todo} />
 <Route path='/register' component={Register} />
 <Route path='/login' render={(props) => <Login {...props} setUserState={ this.setUserState } userAuthState= {this.state.loggedIn}/>} />
 
