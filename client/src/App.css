@@ -59,15 +59,23 @@ button {
 }
 .navLinksWrapper {
   display: flex;
-  grid-column: 2 / span 1;
   align-items: flex-end;
-  justify-content: space-evenly;  
+  grid-column: 2 / span 1;
+}
+
+.navLinksWrapper a {
+  flex: 1 1;
   
 }
 .navItems{
   
   color: #9da2ab;
   font-size: calc(5px + (8 + 8) * ((100vw - 200px) / (1600 - 300)));
+}
+.navItemsHidden {
+  position: absolute !important;
+   top: -9999px !important;
+   left: -9999px !important;
 }
 
 input:focus {
@@ -155,7 +163,7 @@ li {
     border-radius: 8px   
 }
 .dropDownButton {
-  margin: 0;
+  margin: 0 15px 0 0;
   vertical-align: bottom;
   background-color: black;
   color: #9da2ab;
@@ -169,7 +177,9 @@ li {
   opacity: .8;
 }
 .signUpHidden {
-  display: none;
+  position: absolute !important;
+   top: -9999px !important;
+   left: -9999px !important;
 }
 .dashboardTitle {
  text-align: center;

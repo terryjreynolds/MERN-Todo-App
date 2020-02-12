@@ -19,7 +19,8 @@ this.state = {
 
 handleClick = (url, showSignUp) => {
   this.setState({
-    url: url
+    url: url,
+    showSignUp: showSignUp
   });
   
 }
@@ -36,7 +37,7 @@ const userLoggedIn = this.props.userAuthState.loggedIn;
             <div className="navLinksWrapper">
             <Link to="/"><div onClick={ () => this.handleClick('/') } className="navItems">Home</div></Link>
             <Link to="/register"><div onClick={ () => this.handleClick('/register')} className={ this.props.userAuthState.loggedIn ? 'signUpHidden' : "navItems"}>SignUp</div></Link>
-        <Link to="/login"> <div onClick={ () => this.handleClick('/login') } className="navItems" style={ this.state.url === "/login"  ? {display: 'none'} : {display: 'block'}}>Login</div></Link>
+        <Link to="/login"> <div onClick={ () => this.handleClick('/login') } className={ this.state.url === "/login"  ? "navItemsHidden" : this.state.url === "/" && this.props.userAuthState.loggedIn ? "navItemsHidden" : "navItems"} >Login</div></Link>
         <span style= { userLoggedIn ? { display:'block' } : { display: 'none'}}><DropDownMenu userLoggedIn = { this.props.userAuthState.loggedIn } setUserState = { this.props.setUserState } setUrlState = { this.handleClick }/></span>
         </div>
       </div>

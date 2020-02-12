@@ -35,7 +35,7 @@ But what if I set state, will it mount?
 
 
 
-
+style={ this.state.url === "/login"  ? {display: 'none'} : {display: 'block'}}
 
  
   
