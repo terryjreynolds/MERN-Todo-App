@@ -19,8 +19,9 @@ class Dashboard extends React.Component {
   render() {
    
     return (
-        <div> 
+        <div className="dashboardTitle"> 
             <h1>The Obligatory ToDo App</h1>
+            <h4>Let's Todo together</h4>
       
       </div>
     );

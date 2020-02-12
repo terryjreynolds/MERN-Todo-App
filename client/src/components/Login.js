@@ -57,7 +57,6 @@ class Login extends React.Component {
     })
     .then(function (res) {
       console.log('response', res.data.username);
-    //  self.props.setUrlState("/Todo");
       self.setState({sessionUserName: res.data.username
         
       });

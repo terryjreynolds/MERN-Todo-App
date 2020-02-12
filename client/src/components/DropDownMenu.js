@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import axios from "axios";
+import { Redirect } from 'react-router-dom';
 
 class DropDownMenu extends Component {
   constructor() {
@@ -8,12 +9,15 @@ class DropDownMenu extends Component {
     
     this.state = {
       showMenu: false,
+      logoutPath: ''
+      
     };
     
     this.showMenu = this.showMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
   }
   
+
   showMenu(event) {
     event.preventDefault();
     
@@ -32,7 +36,7 @@ class DropDownMenu extends Component {
       
     }
   }
-
+  
   handleLogout = () => { 
     
       //hit the logout endpoint
@@ -40,9 +44,13 @@ class DropDownMenu extends Component {
       .post(`/users/logout`)
       .then(res => {
         if (res.data) {
-          console.log('redirectobj', res.data.redirect);
-          this.props.setUserState(false);
-             window.location = res.data.redirect; 
+          console.log('redirectobj', res.data.redirect);       
+            //  window.location = res.data.redirect; 
+            this.props.setUserState(false);
+           this.setState({
+            logoutPath: '/'
+           });
+           this.props.setUrlState('/')
         }
       })
      
@@ -50,12 +58,25 @@ class DropDownMenu extends Component {
     
     
       };
-  render() {
 
+      
+  render() {
+    if(this.state.logoutPath === '/') {
+        this.setState({
+          logoutPath: ''
+        });
+        
+      return <Redirect to={{
+        pathname: 
+        '/'
+        }}
+        
+    />;
+    }
     const listItemStyle = {
-        display: 'block',
-        fontSize: 'calc(5px + (3 + 8) * ((100vw - 300px) / (1600 - 300)))'
-      };
+      display: 'block',
+      fontSize: 'calc(5px + (3 + 8) * ((100vw - 300px) / (1600 - 300)))'
+    };
 
     return (
       <div>

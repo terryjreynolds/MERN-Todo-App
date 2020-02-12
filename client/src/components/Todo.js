@@ -134,13 +134,14 @@ upon click of the todo item itself-TJR*/
     let { todos } = this.state;
     console.log('todos', todos);
     const defaultTitle = 'The Obligatory Todo App';
-    const name = `${!todos.username  ? defaultTitle : `Welcome, ${this.state.username}!`}`;
+    const username = this.findUserName();
+    const name = `${!username  ? defaultTitle : `Welcome, ${ username}!`}`;
    
     return (
       
       <div>
       
-          <h1>{name}</h1>
+          <h1>{name} Here's your Todo list.</h1>
           
         <Modal
           cancelEditing={this.cancelEditing}

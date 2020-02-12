@@ -171,3 +171,7 @@ li {
 .signUpHidden {
   display: none;
 }
+.dashboardTitle {
+ text-align: center;
+
+}
