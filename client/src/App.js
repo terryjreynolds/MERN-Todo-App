@@ -24,12 +24,12 @@ class App extends Component{
   setUserState(userState) {
 this.setState({
   loggedIn: userState
-});
+})
 
   }
   
  render() {
-    
+    console.log('rendering Appjs');
     
     return (
     

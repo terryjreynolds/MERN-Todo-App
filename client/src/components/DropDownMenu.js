@@ -17,6 +17,7 @@ class DropDownMenu extends Component {
     this.closeMenu = this.closeMenu.bind(this);
   }
   
+  
 
   showMenu(event) {
     event.preventDefault();
@@ -44,34 +45,43 @@ class DropDownMenu extends Component {
       .post(`/users/logout`)
       .then(res => {
         if (res.data) {
-          console.log('redirectobj', res.data.redirect);       
-            //  window.location = res.data.redirect; 
-            this.props.setUserState(false);
+          console.log('redirectobj', res.data.redirect);               
            this.setState({
             logoutPath: '/'
            });
-           this.props.setUrlState('/')
+           
         }
       })
      
       .catch(err => console.log(err));
-    
-    
+       
       };
 
+      handleDelete = ()=> {
+        //TODO: this should use the session id or username to search the db
+        //using some mongoose method such as findOneAndDelete. returning success
+        //to the dropdown which needs to trigger a render and redirect.
+        //ideally, it should put up a card asking for password before
+        //carrying out the deletion. I should be able to find the id or
+        //username on req.user as it is carried along with the headers on 
+        //every request while a session exists
+        console.log('in handleDelete');
+      }
       
   render() {
+    console.log('rendering DropDown');
     if(this.state.logoutPath === '/') {
         this.setState({
           logoutPath: ''
         });
-        
+        this.props.setUserState(false);
+        this.props.setUrlState('/')
       return <Redirect to={{
         pathname: 
         '/'
         }}
         
-    />;
+    />
     }
     const listItemStyle = {
       display: 'block',
@@ -94,8 +104,8 @@ class DropDownMenu extends Component {
                   this.dropdownMenu = element;
                 }}
               >
-                <button onClick={ this.handleLogout }style={listItemStyle}>Logout</button>
-                <button style={listItemStyle}> Delete Acc</button>
+                <button onClick={ this.handleLogout } style={listItemStyle}>Logout</button>
+                <button onClick ={ this.handleDelete } style={listItemStyle}> Delete Acc</button>
                
               </ul>
               </div>

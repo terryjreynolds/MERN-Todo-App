@@ -8,24 +8,26 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
 this.state = {
-  url: '',
-  showSignUp: true
+  url: '/'
 };
   
     
   }
 
-
+setUrlState = (url) => {
+  this.setState({
+    url: url
+  })
+}
 
 handleClick = (url, showSignUp) => {
   this.setState({
-    url: url,
-    showSignUp: showSignUp
+    url: url
   });
   
 }
   render() {
-const userLoggedIn = this.props.userAuthState.loggedIn;
+console.log('rendering Navbar');
 
     return (
         <div className="navbar"> 
@@ -35,10 +37,10 @@ const userLoggedIn = this.props.userAuthState.loggedIn;
             </h1>
             
             <div className="navLinksWrapper">
-            <Link to="/"><div onClick={ () => this.handleClick('/') } className="navItems">Home</div></Link>
-            <Link to="/register"><div onClick={ () => this.handleClick('/register')} className={ this.props.userAuthState.loggedIn ? 'signUpHidden' : "navItems"}>SignUp</div></Link>
-        <Link to="/login"> <div onClick={ () => this.handleClick('/login') } className={ this.state.url === "/login"  ? "navItemsHidden" : this.state.url === "/" && this.props.userAuthState.loggedIn ? "navItemsHidden" : "navItems"} >Login</div></Link>
-        <span style= { userLoggedIn ? { display:'block' } : { display: 'none'}}><DropDownMenu userLoggedIn = { this.props.userAuthState.loggedIn } setUserState = { this.props.setUserState } setUrlState = { this.handleClick }/></span>
+             <Link to="/"><div onClick={ () => this.handleClick('/') } className="navItems">Home</div></Link> 
+            {this.state.url === "/" && this.props.userAuthState.loggedIn === false ? <Link to="/register"><div onClick={ () => this.handleClick('/register')} className="navItems" >SignUp</div></Link> : null}
+       { this.state.url === "/" && this.props.userAuthState.loggedIn === false ? <Link to="/login"> <div onClick={ () => this.handleClick('/login') } className="navItems" >Login</div></Link> : null}
+        { this.props.userAuthState.loggedIn ? <span><DropDownMenu userLoggedIn = { this.props.userAuthState.loggedIn } setUserState = { this.props.setUserState } setUrlState = { this.setUrlState}/></span> : null}
         </div>
       </div>
     );

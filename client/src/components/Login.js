@@ -68,6 +68,7 @@ class Login extends React.Component {
   }
 
   render() {
+    console.log('rendering Login');
     //conditionally rendering the home page
     // const name = this.state.sessionUserName;
     //Also, using a function passed from app.js to update its loggedIn state

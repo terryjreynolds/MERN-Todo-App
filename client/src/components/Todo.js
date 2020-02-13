@@ -131,11 +131,12 @@ upon click of the todo item itself-TJR*/
   };
 
   render() {
+    console.log('rendering Todo');
     let { todos } = this.state;
     console.log('todos', todos);
     const defaultTitle = 'The Obligatory Todo App';
-    const username = this.findUserName();
-    const name = `${!username  ? defaultTitle : `Welcome, ${ username}!`}`;
+    const username = this.props.location.state.username
+    const name = `${!username  ? defaultTitle : `Welcome, ${ this.props.location.state.username}!`}`;
    
     return (
       

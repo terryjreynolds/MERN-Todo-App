@@ -38,4 +38,8 @@ But what if I set state, will it mount?
 style={ this.state.url === "/login"  ? {display: 'none'} : {display: 'block'}}
 
  
-  
+  className={ this.state.url === "/login"  ? null : this.state.url === "/" && this.props.userAuthState.loggedIn ? null: "navItems"}
+
+
+
+  className={ this.props.userAuthState.loggedIn ? 'signUpHidden' : "navItems"}
