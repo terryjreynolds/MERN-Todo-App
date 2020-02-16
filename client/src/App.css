@@ -28,6 +28,9 @@ input {
 .modalInput {
   width: 39vw;
 }
+.modalDeleteInput {
+  width: 20vw;
+}
 .submit {
   border-radius: 8px;
   height: 2.5vw;
@@ -112,6 +115,19 @@ li {
 .hideModal {
   display: none;
 }
+.showModalDelete {
+  display: block;
+  padding: 16px 20px 16px 20px;
+  background-color: black;
+  color: whitesmoke;
+  position: absolute;
+  top: 100%;
+  left: 62.5%;
+}
+.hideModalDelete {
+  display: none;
+}
+
 .displayFlash {
  display: inline;
   background-color: rgb(209, 80, 80);

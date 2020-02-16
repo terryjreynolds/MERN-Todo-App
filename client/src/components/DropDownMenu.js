@@ -3,13 +3,15 @@ import React, { Component } from 'react';
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
 
+
 class DropDownMenu extends Component {
   constructor() {
     super();
     
     this.state = {
       showMenu: false,
-      logoutPath: ''
+      logoutPath: '',
+      
       
     };
     
@@ -57,15 +59,10 @@ class DropDownMenu extends Component {
        
       };
 
-      handleDelete = ()=> {
-        //TODO: this should use the session id or username to search the db
-        //using some mongoose method such as findOneAndDelete. returning success
-        //to the dropdown which needs to trigger a render and redirect.
-        //ideally, it should put up a card asking for password before
-        //carrying out the deletion. I should be able to find the id or
-        //username on req.user as it is carried along with the headers on 
-        //every request while a session exists
+      handleDelete = (e)=> {
+        e.preventDefault();
         console.log('in handleDelete');
+        this.props.setShowModalDeleteState(true);   
       }
       
   render() {
@@ -114,6 +111,7 @@ class DropDownMenu extends Component {
               null
             )
         }
+        
       </div>
     );
   }
