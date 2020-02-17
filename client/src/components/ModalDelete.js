@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../App.css";
+import axios from "axios";
 
 
 
@@ -29,6 +30,33 @@ class ModalDelete extends Component {
     this.props.setShowModalDeleteState(false);
   }
 
+  authPassword = (e) => {
+      e.preventDefault();
+      const data = new FormData(e.target);
+      console.log('in authPassword');
+      console.log('authPassword Data', data.get('password'));
+     
+       // send the password to the server for auth   
+        axios
+        .post('/users/delete', {
+            password: data.get('password')
+        })
+        .then(res => {
+          if (res.data.passwordVerification) {
+            console.log('response', res.data.passwordVerification);
+            //now call another axios request to use the id of the current
+            //session user to delete the account. Find mongoose method to do 
+            //the delete
+          }
+        })
+        .catch(err => console.log(err));
+    };
+    
+          
+        
+
+  
+
  
   render() {
       const buttonStyle = {
@@ -50,6 +78,7 @@ class ModalDelete extends Component {
           onChange={this.modalUpdate}
           type="text"
           value={this.action}
+          name="password"
           placeholder='Enter Password'
         />
 

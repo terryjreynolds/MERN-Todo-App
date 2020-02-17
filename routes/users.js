@@ -124,8 +124,6 @@ if (!errors.isEmpty()) {
                         
                         console.log('successful registration');
                     
-                        // req.flash('success','You are now registered and can log in');
-                         //res.redirect('/');
                     }
                 });
             });
@@ -160,5 +158,32 @@ if (!errors.isEmpty()) {
       return res.json({redirect: "/"});
     },
     );
+
+    //delete a user account
+
+    router.post('/delete', function (req, res) {
+        console.log('in delete user');
+        console.log('user', req.user.password);
+        console.log('pw', req.body.password);
+    
+    
+
+//use bcrypt compare method to compare user pw to hash
+bcrypt.compare(req.body.password, req.user.password, function(err, isMatch) {
+    // res is true as the original password is the same
+    
+    if(err) {
+        throw err;
+    }
+
+ console.log('res', isMatch);
+ res.send({passwordVerification: isMatch});
+
+  });
+});
+  
+
+   
+
 
 module.exports = router;
