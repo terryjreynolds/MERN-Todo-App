@@ -154,6 +154,7 @@ messages.forEach(flashErrors(display, delay));
     
     
   render() {
+    console.log('rendering Register');
     //conditionally rendering the login page
     if (this.state.toLogin === true) {
       return <Redirect to='/login' />

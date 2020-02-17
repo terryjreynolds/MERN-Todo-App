@@ -51,7 +51,7 @@ console.log('rendering Navbar');
        { this.state.url === "/" && this.props.userAuthState.loggedIn === false ? <Link to="/login"> <div onClick={ () => this.handleClick('/login') } className="navItems" >Login</div></Link> : null}
         { this.props.userAuthState.loggedIn ? <span><DropDownMenu setShowModalDeleteState={this.setShowModalDeleteState} userLoggedIn = { this.props.userAuthState.loggedIn } setUserState = { this.props.setUserState } setUrlState = { this.setUrlState}/></span> : null}
         </div>
-        <ModalDelete setShowModalDeleteState ={ this.setShowModalDeleteState } showModalDelete={this.state.showModalDelete}/>
+        <ModalDelete setUserState = { this.props.setUserState } setUrlState = { this.setUrlState} setShowModalDeleteState ={ this.setShowModalDeleteState } showModalDelete={this.state.showModalDelete}/>
       </div>
     );
   }

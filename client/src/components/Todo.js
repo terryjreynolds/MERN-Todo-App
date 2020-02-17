@@ -9,12 +9,6 @@ import { truncateDate } from "../helpers";
 
 
 
-
-
-
-
-
-
 /*This is the stateful class component that gets displayed in the main 
 React App component*/
 

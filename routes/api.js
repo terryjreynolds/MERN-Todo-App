@@ -57,6 +57,19 @@ router.delete("/delete/todos/:id", (req, res, next) => {
      return res.json({success});
 });
 
+//user account is verified and will be deleted by user's choice
+
+router.delete("/deleteAccount/:id", function (req, res){
+  User.findByIdAndDelete(req.params.id, function (err){
+      if(!err) {
+        
+          res.send({success: 'Account Deleted'});
+      }else {
+          res.send({error: 'Error: Account Not Deleted'});
+      }
+  })
+  });
+
 /*Terry made this one as a first step toward editing db posts. I think it should identify a post by its id and allow me to call a function to update its contents, but idk*/
 router.put("/todos/", (req, res, next) => {
   console.log('im in put');

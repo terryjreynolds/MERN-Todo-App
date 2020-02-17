@@ -17,7 +17,7 @@ class Dashboard extends React.Component {
 
 
   render() {
-   
+   console.log('rendering Dashboard');
     return (
         <div className="dashboardTitle"> 
             <h1>The Obligatory ToDo App</h1>

@@ -9,6 +9,7 @@ class Modal extends Component {
   }
 
   render() {
+    console.log('rendering Modal');
     return (
       <form
         className={this.props.show ? "showModal" : "hideModal"}
