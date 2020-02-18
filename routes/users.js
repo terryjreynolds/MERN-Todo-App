@@ -133,22 +133,17 @@ if (!errors.isEmpty()) {
     } 
     });
 
-    //Login post route
-    router.post('/login', function(req, res, next){
-        console.log('requestbody', req);
-        next();
-    },
-  passport.authenticate('local'),
-  (req, res) => {
-      console.log('logged in', req.user);
-      const userInfo = {
-          username: req.user.username
-      };
-      res.send(userInfo);
-      
-  }
-  
-    );
+    //Login post route. Info has the error msgs from passport.js auth
+    router.post('/login', function(req, res, next) {
+        passport.authenticate('local', function(err, user, info) {
+            if (err) { return next(err); }
+            if (!user) { console.log(info); return res.send(info.message); }
+        
+        // NEED TO CALL req.login()!!! to post the session
+            req.login(user, next);
+            return res.send(user);
+        })(req, res, next);
+    });
 
     //Logout post route
     router.post('/logout', function(req, res){

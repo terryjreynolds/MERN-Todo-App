@@ -56,12 +56,19 @@ class Login extends React.Component {
         
     })
     .then(function (res) {
-      console.log('response', res.data.username);
-      self.setState({sessionUserName: res.data.username
-        
-      });
-     
-      self.setState({toHome: true});
+
+      if(res.data.username) {
+        console.log('fullresponse', res);
+        console.log('response', res.data.username);
+        self.setState({sessionUserName: res.data.username
+          
+        });
+       
+        self.setState({toHome: true});
+      } else {
+        console.log('error', res.data);
+      }
+      
     
       
     })
