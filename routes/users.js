@@ -180,10 +180,42 @@ bcrypt.compare(req.body.password, req.user.password, function(err, isMatch) {
   });
 });
 
-
+// return user profile items to populate profile page for changes
+router.get("/profile", (req, res, next) => {
+    console.log('im getting profile');
+    //this will return all the data
+    const userid = req.user._id
+    console.log('userid', userid);
+    User.findById(userid, function(err, user) {
   
+      if (err) {console.log('error', err);}
+      
+    })
+      .then(user => res.json(user))
+      .catch(next);
+  });
+  
+//receive updated fields of profile and make changes in db
+router.put("/profile/:id/:name/:email/:username", (req, res, next) => {
+    console.log('im in profile put');
+    console.log('put req',req.body);
+if (req.params.name) {
+    User.updateOne(
+        { _id: req.user._id},
+        
+        {"$set" : {"name": req.params.name, "email" : req.params.email,
+         "username" : req.params.username}}).exec(function(err, user){
 
-   
+            if(err) {
+                console.log(err);
+                res.send(err);
+            } else {
+                res.send(user);
+            }
 
-
+         });
+         
+}
+    
+});
 module.exports = router;

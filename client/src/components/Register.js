@@ -17,6 +17,9 @@ class Register extends React.Component {
   constructor(props) {
     super(props);
 
+  //create reference on name input field
+this.textInput = React.createRef();
+
     this.state = {
       name: "",
       username: "",
@@ -30,6 +33,11 @@ class Register extends React.Component {
 
 
   }
+
+componentDidMount() {
+  //setting focus on name input field
+  this.textInput.current.focus();
+}
 
  handleChange = (e) => {
   console.log('e', e.target.name);
@@ -169,7 +177,7 @@ messages.forEach(flashErrors(display, delay));
      
       
     
-      <input style= {inputStyle} placeholder="name"  id='name' onChange={this.handleChange}  value={this.state.name} name='name' type='text'   />
+      <input ref={this.textInput} style= {inputStyle} placeholder="name"  id='name' onChange={this.handleChange}  value={this.state.name} name='name' type='text'   />
         <input style= {inputStyle}  placeholder="email"  id='email' onChange={this.handleChange}  value={this.state.email} name='email' type='text'    />
         <input style= {inputStyle} placeholder='username'  id='username' onChange={this.handleChange} value={this.state.username} name='username' type='text'   />
         <input style= {inputStyle}  placeholder='password ' id='password'  onChange={this.handleChange} value={this.state.password} name='password' type='password'    />

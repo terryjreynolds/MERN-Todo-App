@@ -4,10 +4,24 @@ import axios from "axios";
 import { truncateDate } from "../helpers";
 
 class Input extends Component {
-  state = {
+
+  constructor(props) {
+    super(props);
+
+  //create a ref to the todo input field
+ this.textInput = React.createRef();
+
+
+  this.state = {
     action: "",
     edited: truncateDate(Date())
   };
+
+}
+
+componentDidMount(){
+  this.textInput.current.focus();
+}
 
   addTodo = e => {
     e.preventDefault();
@@ -43,6 +57,7 @@ class Input extends Component {
     return (
       <form onSubmit={this.addTodo}>
         <input
+        ref={this.textInput}
           placeholder="Create a new to-do item"
           type="text"
           onChange={this.handleChange}

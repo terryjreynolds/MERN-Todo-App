@@ -14,8 +14,12 @@ React App component*/
 
 class Todo extends Component {
 
+  constructor(props) {
+    super(props);
 
-  state = {
+
+
+  this.state = {
     todos: [],
     show: false,
     action: "",
@@ -23,13 +27,15 @@ class Todo extends Component {
     buttonState: "",
     date: ""
   };
-
+  }
   /*upon page load, an array of todos is queried from db and displayed.*/
 
   componentDidMount() {
- 
+    
   this.getTodos();
+  
   }
+  
 
   findUserName = () => {
     console.log('infindUserName');
@@ -136,7 +142,7 @@ upon click of the todo item itself-TJR*/
       
       <div>
       
-          <h1>{name} Here's your Todo list.</h1>
+          <h1>{name}</h1>
           
         <Modal
           cancelEditing={this.cancelEditing}

@@ -174,7 +174,7 @@ return <Redirect to={{
           value={this.state.action}
           type='password'
           name="password"
-          placeHolder='Enter Password'
+          placeholder='Enter Password'
           ref={this.textInput}
           
         />

@@ -7,6 +7,8 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
+import Profile from './components/Profile';
+import PasswordChange from "./components/PasswordChange";
 
 class App extends Component{
 
@@ -41,7 +43,8 @@ this.setState({
 <Route exact path='/Todo' component={Todo} />
 <Route path='/register' component={Register} />
 <Route path='/login' render={(props) => <Login {...props} setUserState={ this.setUserState } userAuthState= {this.state.loggedIn}/>} />
-
+<Route path='/profile' component={Profile} />
+<Route path='/passwordChange' component={PasswordChange} />
       </Switch>
       
     </div>

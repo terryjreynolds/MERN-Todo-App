@@ -1,33 +1,7 @@
 
 
 
-  //TODO: this should use the session id or username to search the db
-        //using some mongoose method such as findOneAndDelete. returning success
-        //to the dropdown which needs to trigger a render and redirect.
-        //ideally, it should put up a card asking for password before
-        //carrying out the deletion. I should be able to find the id or
-        //username on req.user as it is carried along with the headers on 
-        //every request while a session exists
-
-        [*] user hits delelte account button
-        [*] onClick a modal card should appear
-        [*] construct a modal form that receives input of password
-        [*] modal compares password. If good follow route to delete. If bad
-        kick out alert that says 'password incorrect'. 'Deletion Unsuccesful'
-        Note: the modal needs to compare the hashed password with the password found 
-        on the user with the current session id (found on req.user)
-        [*] build the delete route
-        [*] use password from form data to make object to send to endpoint
-      [*] has the password and compare to has found in req.user
-      [] flash account delelted 
-      [] redirect to dasboard
-
-
-i put the showCard state in Navbar. The delete button in dropdownmenu sets that state
-to false, so the card css is display: none. But immediately after rendering of dropdownmenu
-it navigates to /Todo. Why? I don't have any react router stuff in there. On navigation
-to Todo, it triggers redering of app, navbar and Todo, but it can't find the username
-so it throws an error.
+ 
 
 
 

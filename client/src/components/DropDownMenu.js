@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 
 class DropDownMenu extends Component {
   constructor() {
@@ -10,9 +10,7 @@ class DropDownMenu extends Component {
     
     this.state = {
       showMenu: false,
-      logoutPath: '',
-      
-      
+      logoutPath: '',     
     };
     
     this.showMenu = this.showMenu.bind(this);
@@ -39,7 +37,10 @@ class DropDownMenu extends Component {
       
     }
   }
-  
+  getAccountProfile = () => {
+    console.log('in getAccountProfile');
+  }
+
   handleLogout = () => { 
     
       //hit the logout endpoint
@@ -59,7 +60,7 @@ class DropDownMenu extends Component {
        
       };
 
-      handleDelete = (e)=> {
+      handleClick= (e)=> {
         e.preventDefault();
         console.log('in handleDelete');
         this.props.setShowModalDeleteState(true);   
@@ -101,8 +102,11 @@ class DropDownMenu extends Component {
                   this.dropdownMenu = element;
                 }}
               >
+              <Link to="/profile"><button onClick={this.closeMenu}style={listItemStyle}>Profile</button> </Link>
+              <Link to="/passwordChange"><button onClick={this.closeMenu}style={listItemStyle}>Change Password</button> </Link>
+              <button onClick ={ this.handleClick } style={listItemStyle}> Delete Account</button>
                 <button onClick={ this.handleLogout } style={listItemStyle}>Logout</button>
-                <button onClick ={ this.handleDelete } style={listItemStyle}> Delete Acc</button>
+                
                
               </ul>
               </div>

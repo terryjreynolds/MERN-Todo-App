@@ -3,7 +3,7 @@ import axios from "axios";
 import { Redirect } from 'react-router';
 
 const buttonStyle = {
-  display: 'block',
+  
   margin: '1vw'
 };
 
@@ -18,17 +18,26 @@ class Login extends React.Component {
 
   constructor(props) {
     super(props);
-   
+ 
+    //create a ref for username field on login form
+this.loginInput = React.createRef();
+
     this.state = {
       
       username: "",
       password: "",
       toHome: false,
-      sessionUserName: ''
+      sessionUserName: '',
+      displayFlashMsg: false,
+      msg: ''
         
     };
 
     axios.defaults.withCredentials = true;
+  }
+
+  componentDidMount(){
+    this.loginInput.current.focus();
   }
 
  handleChange = (e) => {
@@ -66,9 +75,22 @@ class Login extends React.Component {
         self.setState({toHome: true});
       } else {
         console.log('error', res.data);
+        self.setState({
+          msg: res.data,
+          displayFlashMsg: true
+        });
       }
       
-    
+      setTimeout(function() {
+      
+        self.setState({
+        displayFlashMsg: false,
+        msg: "",
+        username: '',
+        password: ''
+      });
+      
+      }, 1500);
       
     })
   }
@@ -91,7 +113,10 @@ class Login extends React.Component {
             
       <form onSubmit={this.handleSubmit}>
       <h1 style={buttonStyle}>To-Do Login</h1>
-      <input style= {inputStyle} placeholder='username'  id='username' onChange={this.handleChange} value={this.state.username} name='username' type='text'   />
+      <h5 className={this.state.displayFlashMsg ? 'displayFlash' : 'hideFlash'}
+      
+      >{this.state.msg}</h5>
+      <input ref={this.loginInput} style= {inputStyle} placeholder='username'  id='username' onChange={this.handleChange} value={this.state.username} name='username' type='text'   />
         <input style= {inputStyle}  placeholder='password ' id='password'  onChange={this.handleChange} value={this.state.password} name='password' type='password'    />
         <button style={buttonStyle} type='submit'>Submit</button>
       </form>
