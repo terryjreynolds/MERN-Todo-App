@@ -49,8 +49,7 @@ class Login extends React.Component {
     const self = this;
   
     axios.post ('/users/login', {
-      
-     
+          
         username: data.get('username'), 
         password: data.get('password')
         
