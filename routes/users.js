@@ -221,7 +221,7 @@ if (req.params.name) {
 
 //authenticate user pw for permission to delete account
 
-router.post('/passwordChange', function (req, res) {
+router.post('/authOldPassword', function (req, res) {
     console.log('in delete user');
     console.log('user', req.user.password);
     console.log('pw', req.body.password);
@@ -244,4 +244,78 @@ res.send({passwordVerification: isMatch,
 
 });
 });
+
+
+//receive new password, check confirm matches, hash them and send to db
+router.put("/validateNewPassword", [
+    
+    // password must be at least 5 chars long and be confirmed
+    check("newPassword", 'Valid password is required')
+    .notEmpty()
+        .isLength({ min: 5 })
+        .withMessage('Password must be at least 5 chars long')
+        .custom((value,{req, loc, path}) => {
+            if (value !== req.body.password2) {
+                // throw error if passwords do not match
+                throw new Error("Passwords don't match");
+            } else {
+                return value;
+            }
+        }),
+        check('password2', 'Password Confirmation required')
+        .notEmpty()
+        .isLength({min: 5})
+        .withMessage('Password Confirmation required')  
+
+  ], (req, res) => {
+    
+//Finds the validation errors and wraps in object with handy functions
+const errors = validationResult(req);
+if (!errors.isEmpty()) {
+    //uses the express Result array of objects to isolate the error message
+    const errMsg = ((errors.array())[0]).msg
+    
+   console.log('errors', errMsg);
+
+  return res.json({ errors: errors.array() });
+  
+} else {
+
+
+    //create an object before hashing
+  const newWord = {     
+        password: req.body.newPassword       
+    };   
+
+
+//hash the password, store it in newWord object and save to MongoDB
+        bcrypt.genSalt(10, function(err,salt){
+            bcrypt.hash(newWord.password, salt, function(err, hash) {
+                if(err){
+                    console.log(err);
+                }
+                newWord.password = hash;
+                User.updateOne(
+                    { _id: req.user._id},
+                    
+                    {"$set" : {"password": newWord.password}}).exec(function(err, user){
+            
+                        if(err) {
+                            console.log(err);
+                            res.send(err);
+                        } else {
+                            const success = 'Password Changed Successfully'
+        return res.json({success});
+                        }
+            
+                     });
+            });
+        });
+        
+    } 
+    });
+    
+
+    
+
 module.exports = router;

@@ -42,22 +42,20 @@ this.textInputTwo = React.createRef();
 
 componentDidMount() {
   //setting focus on name input field
-  if(this.state.passwordVerified) {
-      this.textInputTwo.current.focus();
-  } else {
+
     this.textInput.current.focus();
-  }
+  
    
 }
 componentDidUpdate() {
-    if(this.state.passwordVerified) {
-        this.textInputTwo.current.focus();
-    } else {
-      this.textInput.current.focus();
+   if(!this.state.oldPassword && !this.state.passwordVerified) {
+    this.textInput.current.focus();
+   }
+    if(this.state.passwordVerified && !this.state.newPassword ) {
+        this.textInputTwo.current.focus();  
     }
-
+        
 }
-
  handleChange = (e) => {
   console.log('e', e.target.name);
    const target = e.target;
@@ -91,7 +89,7 @@ console.log('in verifyCurrentPassword');
      
        // send the password to the server for auth   
         axios
-        .post('/users/passwordChange', {
+        .post('/users/authOldPassword', {
             password: data.get('oldPassword')
         })
         .then(res => {
@@ -102,6 +100,7 @@ console.log('in verifyCurrentPassword');
                 passwordVerified: true,
                 id: res.data.userId
             })
+
              
           }else {
             //flash error msg and reset the input field.
@@ -119,33 +118,31 @@ console.log('in verifyCurrentPassword');
     };
  
 
- //handles save button if userVerified is true
+ //handles submit button if userVerified authenticates to true
  changePassword = (e) => {
 
     e.preventDefault();
      console.log('in changePassword');
-     this.setState({
-        passwordVerified: false
-    })
-     
-    //  // const data = new FormData(e.target);      
-    //  console.log("im in handle change password submit");
     
-    //  axios
-    //    .put(
-    //      `/users/profile/${this.state.id}/${this.state.name}/${
-    //        this.state.email
-    //      }/${this.state.username}`
-    //    )
-    //    .then(res => {
-    //      if (res) {
-    //        console.log("send Profile resdata", res);        
-    //        this.setState({
-    //            userUpdated: true               
-    //        })
-    //      }
-    //    })
-    //    .catch(err => console.log(err));
+     
+   const data = new FormData(e.target);      
+   console.log("im in handle change password submit");
+    
+     axios
+       .put('/users/validateNewPassword', {
+        newPassword: data.get('newPassword'),
+        password2: data.get('confirm')
+    })
+       .then(res => {
+         if (res) {
+           console.log("send changePassword resdata", res);        
+           this.setState({
+               userUpdated: true, 
+               passwordVerified: false              
+           })
+         }
+       })
+       .catch(err => console.log(err));
  }
 
 
@@ -157,15 +154,15 @@ console.log('in verifyCurrentPassword');
   }
 
   render() {
-    console.log('rendering Profile');
+    console.log('rendering passwordChange');
      //conditionally rendering the Todo page
      if (this.state.userUpdated) {
-        return <Redirect to={{
-          pathname: '/Todo',
-          state: { username: this.state.username }
-      }}
-  />
+         this.setState({
+             userUpdated: false
+         })
+        return <Redirect to='/login' />
       }
+      
     return (
       <div> 
       <h1>{!this.state.passwordVerified ? "Verify Old Password" : "New Password"}</h1>
@@ -175,7 +172,7 @@ console.log('in verifyCurrentPassword');
       >{this.state.flash}</h5>
       <form onSubmit={this.state.passwordVerified ? this.changePassword : this.verifyCurrentPassword}>   
       <input className={!this.state.passwordVerified ? "showModal" : "hideModal"} ref={this.textInput} style= {inputStyle} placeholder="Enter Old Password"  id='name' onChange={this.handleChange} value={this.state.oldPassword} name='oldPassword' type='text'   />
-      <input className={this.state.passwordVerified ? "showModal" : "hideModal"} ref={this.textInputTwo} style= {inputStyle}  placeholder='New password ' id='password'  onChange={this.handleChange} value={this.state.newPassword} name='password' type='password'    />
+      <input className={this.state.passwordVerified ? "showModal" : "hideModal"} ref={this.textInputTwo} style= {inputStyle}  placeholder='New password ' id='password'  onChange={this.handleChange} value={this.state.newPassword} name='newPassword' type='password'    />
         <input className={this.state.passwordVerified ? "showModal" : "hideModal"} style= {inputStyle} placeholder="Confirm new password"  id='password2'  onChange={this.handleChange} value={this.state.confirm} name='confirm' type='password'     />
         <button  style= {buttonStyle} type='submit' >Submit</button>
          <button onClick={this.goBack} style= {buttonStyle}>Cancel</button>

@@ -1,7 +1,9 @@
 
 
 
- 
+  this.setState({
+        passwordVerified: false
+    })
 
 
 
