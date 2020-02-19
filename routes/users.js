@@ -218,4 +218,30 @@ if (req.params.name) {
 }
     
 });
+
+//authenticate user pw for permission to delete account
+
+router.post('/passwordChange', function (req, res) {
+    console.log('in delete user');
+    console.log('user', req.user.password);
+    console.log('pw', req.body.password);
+    console.log('useridfromserver', req.user._id);
+
+
+
+//use bcrypt compare method to compare user pw to hash
+bcrypt.compare(req.body.password, req.user.password, function(err, isMatch) {
+// res is true as the original password is the same
+
+if(err) {
+    throw err;
+}
+
+console.log('res', isMatch);
+res.send({passwordVerification: isMatch,
+        userId: req.user._id
+});
+
+});
+});
 module.exports = router;

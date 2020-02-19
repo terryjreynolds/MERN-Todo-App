@@ -1,5 +1,5 @@
 import React from "react";
-// import axios from "axios";
+import axios from "axios";
 import { Redirect } from 'react-router';
 
 
@@ -33,7 +33,10 @@ this.textInputTwo = React.createRef();
       userUpdated: false,
       sessionUserName: "", 
       showInputFields: false,
-      passwordVerified: false
+      passwordVerified: false,
+      newPassword: '',
+      displayFlash: false,
+      flash: ''
     }
   }
 
@@ -66,14 +69,55 @@ componentDidUpdate() {
    });
  }
 
- //handles save if userVerified is false
+   //if the user flubs the pw input
+   tryAgain = () => {
+    console.log('in tryAgain');
+    this.setState({     
+       flash: '',
+       displayFlash: false,
+       oldPassword: ''
+     });
+  }
+
+ //handles save button click if userVerified is false
  verifyCurrentPassword = (e) => {
      e.preventDefault();
 console.log('in verifyCurrentPassword');
-this.setState({
-    passwordVerified: true
-})
- }
+     const self = this;
+      e.preventDefault();
+      const data = new FormData(e.target);
+     
+      console.log('verifyCurrentPassword Data', data.get('oldPassword'));
+     
+       // send the password to the server for auth   
+        axios
+        .post('/users/passwordChange', {
+            password: data.get('oldPassword')
+        })
+        .then(res => {
+          if (res.data.passwordVerification) {
+            console.log('response', res.data.passwordVerification);
+            console.log('responseid', res.data.userId);
+            self.setState({
+                passwordVerified: true,
+                id: res.data.userId
+            })
+             
+          }else {
+            //flash error msg and reset the input field.
+            
+            self.setState({
+              flash: 'Old password incorrect',
+              displayFlash: true
+             });
+
+             setTimeout(function(){ self.tryAgain() }, 1500);
+          }
+
+        })
+        .catch(err => console.log(err));
+    };
+ 
 
  //handles save button if userVerified is true
  changePassword = (e) => {
@@ -124,14 +168,15 @@ this.setState({
       }
     return (
       <div> 
-      <h1>{!this.state.passwordVerified ? "Verify Old Password" : "Provide New Password"}</h1>
-      <h5 className={this.state.msg === 'Registration Successful' ? 'displayFlashSuccess' : this.state.displayFlashMsg ? 'displayFlash' : 'hideFlash'}
+      <h1>{!this.state.passwordVerified ? "Verify Old Password" : "New Password"}</h1>
       
-      >{this.state.msg}</h5>
+      <h5 className={this.state.displayFlash ? 'displayFlash' : 'hideFlash'}
+      
+      >{this.state.flash}</h5>
       <form onSubmit={this.state.passwordVerified ? this.changePassword : this.verifyCurrentPassword}>   
-      <input className={!this.state.passwordVerified ? "showModal" : "hideModal"} ref={this.textInput} style= {inputStyle} placeholder="Enter Old Password"  id='name' onChange={this.handleChange}  name='oldPassword' type='text'   />
-      <input className={this.state.passwordVerified ? "showModal" : "hideModal"} ref={this.textInputTwo} style= {inputStyle}  placeholder='password ' id='password'  onChange={this.handleChange} value={this.state.password} name='password' type='password'    />
-        <input className={this.state.passwordVerified ? "showModal" : "hideModal"} style= {inputStyle} placeholder="confirm password"  id='password2'  onChange={this.handleChange} value={this.state.confirm} name='confirm' type='password'     />
+      <input className={!this.state.passwordVerified ? "showModal" : "hideModal"} ref={this.textInput} style= {inputStyle} placeholder="Enter Old Password"  id='name' onChange={this.handleChange} value={this.state.oldPassword} name='oldPassword' type='text'   />
+      <input className={this.state.passwordVerified ? "showModal" : "hideModal"} ref={this.textInputTwo} style= {inputStyle}  placeholder='New password ' id='password'  onChange={this.handleChange} value={this.state.newPassword} name='password' type='password'    />
+        <input className={this.state.passwordVerified ? "showModal" : "hideModal"} style= {inputStyle} placeholder="Confirm new password"  id='password2'  onChange={this.handleChange} value={this.state.confirm} name='confirm' type='password'     />
         <button  style= {buttonStyle} type='submit' >Submit</button>
          <button onClick={this.goBack} style= {buttonStyle}>Cancel</button>
       </form>
