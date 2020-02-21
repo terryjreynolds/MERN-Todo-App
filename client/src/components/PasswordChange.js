@@ -36,7 +36,8 @@ this.textInputTwo = React.createRef();
       passwordVerified: false,
       newPassword: '',
       displayFlash: false,
-      flash: ''
+      flash: '',
+      msg: 'hi'
     }
   }
 
@@ -124,7 +125,7 @@ console.log('in verifyCurrentPassword');
     e.preventDefault();
      console.log('in changePassword');
     
-     
+     const self = this;
    const data = new FormData(e.target);      
    console.log("im in handle change password submit");
     
@@ -134,16 +135,104 @@ console.log('in verifyCurrentPassword');
         password2: data.get('confirm')
     })
        .then(res => {
-         if (res) {
-           console.log("send changePassword resdata", res);        
-           this.setState({
-               userUpdated: true, 
-               passwordVerified: false              
-           })
+ 
+           if((res.data).hasOwnProperty('errors')) {
+              //load the msg property into a variable
+          
+           //push msgs to an array. 
+           //push params to an array
+           //flash the individual messages 1.5 seconds apart
+           //use params to empty fields.
+          let errors = res.data.errors;
+         
+
+          //messages is the array of returned messages
+          let messages = errors.map((c,i) => {
+           return c.msg;
+         });
+         
+         let params = errors.map((c,i) => {
+           return c.param;
+         });
+         
+         const delay = 1500;
+          const paramDelay = messages.length * delay + 300;
+         console.log(messages);
+         console.log(params);
+         
+         //displays the flash messages
+         function display(str) {
+           console.log(str);
+           self.setState({
+             displayFlash: true,
+             msg: str  
+           });
+         
          }
-       })
-       .catch(err => console.log(err));
- }
+         
+         //loop through the messages and pass to function that will display them
+         const flashErrors = (fn, delay) => {
+           return (msg, i) => {
+             setTimeout(() => {
+               //the function to setState
+               fn(msg);
+             }, i * delay);
+           }
+         };
+         
+         messages.forEach(flashErrors(display, delay));
+            //use the params array to setState one time for each param
+            
+            function emptyFields(param) {
+             if(param === 'newPassword') {
+               self.setState({
+                 displayFlash: false,
+                 [param]: '',
+                confirm: ''
+               });
+             } else {
+               self.setState({
+                 displayFlash: false,
+                [param]: ''
+               });
+             }
+           
+             
+            }
+         
+          setTimeout(function() {
+           params.forEach(emptyFields);
+          }, paramDelay) ;
+             
+             console.log('stateafterflash', self.state);
+         
+         
+             //if there are not errors, return success message
+           } else {
+             console.log('resdata', res.success);
+             self.setState({
+               displayFlash: true,
+               msg: res.data.success
+             });
+           
+             setTimeout(function() {
+               
+               self.setState({
+               displayFlash: false,
+               msg: "",
+               toLogin: true,
+               userUpdated: true, 
+            
+             });
+             
+             }, 3000);
+           }
+
+
+          
+         });
+        }
+
 
 
 
@@ -158,7 +247,8 @@ console.log('in verifyCurrentPassword');
      //conditionally rendering the Todo page
      if (this.state.userUpdated) {
          this.setState({
-             userUpdated: false
+             userUpdated: false,
+             passwordVerified: false 
          })
         return <Redirect to='/login' />
       }
@@ -169,7 +259,7 @@ console.log('in verifyCurrentPassword');
       
       <h5 className={this.state.displayFlash ? 'displayFlash' : 'hideFlash'}
       
-      >{this.state.flash}</h5>
+      >{this.state.passwordVerified ? this.state.msg : this.state.flash}</h5>
       <form onSubmit={this.state.passwordVerified ? this.changePassword : this.verifyCurrentPassword}>   
       <input className={!this.state.passwordVerified ? "showModal" : "hideModal"} ref={this.textInput} style= {inputStyle} placeholder="Enter Old Password"  id='name' onChange={this.handleChange} value={this.state.oldPassword} name='oldPassword' type='text'   />
       <input className={this.state.passwordVerified ? "showModal" : "hideModal"} ref={this.textInputTwo} style= {inputStyle}  placeholder='New password ' id='password'  onChange={this.handleChange} value={this.state.newPassword} name='newPassword' type='password'    />
