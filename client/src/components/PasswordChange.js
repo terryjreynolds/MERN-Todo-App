@@ -135,17 +135,15 @@ console.log('in verifyCurrentPassword');
         password2: data.get('confirm')
     })
        .then(res => {
- 
+
            if((res.data).hasOwnProperty('errors')) {
-              //load the msg property into a variable
-          
+             //same logic as used in Register component
+          //load the msg property into a variable         
            //push msgs to an array. 
            //push params to an array
            //flash the individual messages 1.5 seconds apart
            //use params to empty fields.
           let errors = res.data.errors;
-         
-
           //messages is the array of returned messages
           let messages = errors.map((c,i) => {
            return c.msg;
@@ -196,7 +194,6 @@ console.log('in verifyCurrentPassword');
                 [param]: ''
                });
              }
-           
              
             }
          
@@ -205,8 +202,7 @@ console.log('in verifyCurrentPassword');
           }, paramDelay) ;
              
              console.log('stateafterflash', self.state);
-         
-         
+                 
              //if there are not errors, return success message
            } else {
              console.log('resdata', res.success);
@@ -227,14 +223,9 @@ console.log('in verifyCurrentPassword');
              
              }, 3000);
            }
-
-
           
          });
         }
-
-
-
 
   //uses history api riding on props to go back to todo.js 
   goBack = (e) => {
