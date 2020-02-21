@@ -115,10 +115,13 @@ populateProfileFields = () => {
       <h5 className={this.state.msg === 'Registration Successful' ? 'displayFlashSuccess' : this.state.displayFlashMsg ? 'displayFlash' : 'hideFlash'}
       
       >{this.state.msg}</h5>
-      <form onSubmit={this.handleSubmit}>   
-      <input ref={this.textInput} style= {inputStyle} placeholder="name"  id='name' onChange={this.handleChange}  value={this.state.name} name='name' type='text'   />
-        <input style= {inputStyle}  placeholder="email"  id='email' onChange={this.handleChange}  value={this.state.email} name='email' type='text'    />
-        <input style= {inputStyle} placeholder='username'  id='username' onChange={this.handleChange} value={this.state.username} name='username' type='text' />      
+      <form onSubmit={this.handleSubmit}> 
+      <label for="name">First name:</label>  
+      <input ref={this.textInput} id='name' style= {inputStyle} placeholder="name" onChange={this.handleChange}  value={this.state.name} name='name' type='text'   />
+      <label for="email">Email:</label>
+        <input style= {inputStyle} id='email'  placeholder="email" onChange={this.handleChange}  value={this.state.email} name='email' type='text'    />
+        <label for="username">Username:</label>
+        <input style= {inputStyle} id='username'  placeholder='username' onChange={this.handleChange} value={this.state.username} name='username' type='text' />      
         <button  style= {buttonStyle} type='submit' >Save</button>
          <button onClick={this.goBack} style= {buttonStyle}>Cancel</button>
       </form>

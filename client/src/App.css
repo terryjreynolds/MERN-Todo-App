@@ -5,6 +5,9 @@
   margin-right: auto;
 margin-top: 10vw;
 }
+label{
+  display: block;
+}
 h1 {
 
   display: inline;

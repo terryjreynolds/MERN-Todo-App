@@ -20,6 +20,7 @@ class DropDownMenu extends Component {
   
 
   showMenu(event) {
+    console.log('inshowMenu');
     event.preventDefault();
     
     this.setState({ showMenu: true }, () => {
@@ -28,14 +29,13 @@ class DropDownMenu extends Component {
   }
   
   closeMenu(event) {
+    console.log('incloseMenu');
     
-    if (!this.dropdownMenu.contains(event.target)) {
-      
       this.setState({ showMenu: false }, () => {
         document.removeEventListener('click', this.closeMenu);
       });  
       
-    }
+    
   }
   getAccountProfile = () => {
     console.log('in getAccountProfile');
@@ -60,7 +60,7 @@ class DropDownMenu extends Component {
        
       };
 
-      handleClick= (e)=> {
+      handleClick= (e) => {
         e.preventDefault();
         console.log('in handleDelete');
         this.props.setShowModalDeleteState(true);   
