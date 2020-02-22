@@ -15,8 +15,6 @@ class Input extends Component {
   this.state = {
     action: "",
     edited: truncateDate(Date()),
-    displayFlash: false,
-    msg: ''
   };
 
 }
@@ -24,7 +22,9 @@ class Input extends Component {
 componentDidMount(){
   this.textInput.current.focus();
 }
-
+componentDidUpdate(){
+  this.textInput.current.focus();
+}
 
   addTodo = e => {
     e.preventDefault();
@@ -49,11 +49,7 @@ const self = this;
           //displays the flash messages
           function display(str) {
             console.log(str);
-            self.setState({
-              displayFlash: true,
-              msg: str  
-            });
-          
+            self.props.controlDisplayFlash(true, str);         
           }
           
           //loop through the messages and pass to function that will display them
@@ -70,11 +66,10 @@ const self = this;
                     
            setTimeout(function() {
            self.setState({
-            displayFlash: false,
             action: '',
             edited: []
           }); 
-              console.log('stateafterflash', self.state);
+              
           }, delay);
 
         } else if (res.data){
@@ -88,9 +83,7 @@ const self = this;
       .catch(err => console.log(err));
     } 
         
-  };    
-    
-  
+  };      
 
   handleChange = e => {
     this.setState({
@@ -107,7 +100,7 @@ const self = this;
 
     return (
 <div>
-    <h5  style={{display: 'inlineBlock'}} className={this.state.displayFlash ? 'displayFlash' : 'hideFlash'}>{this.state.msg}</h5> 
+     
       <form onSubmit={this.addTodo}>
       
         <input

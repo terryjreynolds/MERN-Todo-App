@@ -20,7 +20,9 @@ class Todo extends Component {
     action: "",
     editableId: "",
     buttonState: "",
-    date: ""
+    date: "",
+    displayFlash: false,
+    msg: ''
   };
   }
   /*upon page load, an array of todos is queried from db and displayed.*/
@@ -121,6 +123,22 @@ upon click of the todo item itself-TJR*/
 
 
   };
+//function is passed as props to input.js so it may display flash here
+  controlDisplayFlash = (toggle, msg) => {
+    console.log('in controlDisplayFlash');
+    this.setState({
+      displayFlash: toggle,
+      msg: msg
+    });
+const self = this;
+    setTimeout(function() {
+      self.setState({
+        displayFlash: false,
+       msg: ''
+     }); 
+         console.log('stateafterTodoflash', this.state);
+     }, 2000);
+  };
 
   render() {
     console.log('rendering Todo');
@@ -135,7 +153,7 @@ upon click of the todo item itself-TJR*/
       <div>
              
           <h1>{name}</h1>
-          
+          <h5  style={{display: 'inlineBlock'}} className={this.state.displayFlash ? 'displayFlash' : 'hideFlash'}>{this.state.msg}</h5>
         <Modal
           cancelEditing={this.cancelEditing}
           modalUpdate={this.modalUpdate}
@@ -146,7 +164,7 @@ upon click of the todo item itself-TJR*/
         />
 
         <div className={this.state.show ? "hideInput" : "showInput"}>
-          <Input getTodos={this.getTodos} />
+          <Input controlDisplayFlash={this.controlDisplayFlash} getTodos={this.getTodos} />
         </div>
 
         <ListTodo
