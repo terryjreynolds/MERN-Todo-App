@@ -11,8 +11,6 @@ const inputStyle = {
   margin: '1vw'
 };
 
-
-
 class Login extends React.Component {
 
 
@@ -113,8 +111,7 @@ this.loginInput = React.createRef();
             
       <form onSubmit={this.handleSubmit}>
       <h1 style={buttonStyle}>To-Do Login</h1>
-      <h5 className={this.state.displayFlashMsg ? 'displayFlash' : 'hideFlash'}
-      
+      <h5 className={this.state.displayFlashMsg ? 'displayFlash' : 'hideFlash'}     
       >{this.state.msg}</h5>
       <input ref={this.loginInput} style= {inputStyle} placeholder='username'  id='username' onChange={this.handleChange} value={this.state.username} name='username' type='text'   />
         <input style= {inputStyle}  placeholder='password ' id='password'  onChange={this.handleChange} value={this.state.password} name='password' type='password'    />

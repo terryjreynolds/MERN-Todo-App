@@ -2,8 +2,6 @@ import React from "react";
 import axios from "axios";
 import { Redirect } from 'react-router';
 
-
-
 const buttonStyle = {
   display: 'inline-block',
   margin: '1vw'
@@ -12,7 +10,6 @@ const buttonStyle = {
 const inputStyle = {
   margin: '1vw'
 };
-
 
 class PasswordChange extends React.Component {
 
@@ -43,11 +40,9 @@ this.textInputTwo = React.createRef();
 
 componentDidMount() {
   //setting focus on name input field
-
-    this.textInput.current.focus();
-  
-   
+    this.textInput.current.focus();   
 }
+
 componentDidUpdate() {
    if(!this.state.oldPassword && !this.state.passwordVerified) {
     this.textInput.current.focus();
@@ -246,10 +241,9 @@ console.log('in verifyCurrentPassword');
       
     return (
       <div> 
-      <h1>{!this.state.passwordVerified ? "Verify Old Password" : "New Password"}</h1>
+      <h1 style={inputStyle}>{!this.state.passwordVerified ? "Verify Old Password" : "New Password"}</h1>
       
-      <h5 className={this.state.displayFlash ? 'displayFlash' : 'hideFlash'}
-      
+      <h5 className={this.state.displayFlash ? 'displayFlash' : 'hideFlash'}      
       >{this.state.passwordVerified ? this.state.msg : this.state.flash}</h5>
       <form onSubmit={this.state.passwordVerified ? this.changePassword : this.verifyCurrentPassword}>   
       <input className={!this.state.passwordVerified ? "showModal" : "hideModal"} ref={this.textInput} style= {inputStyle} placeholder="Enter Old Password"  id='name' onChange={this.handleChange} value={this.state.oldPassword} name='oldPassword' type='text'   />

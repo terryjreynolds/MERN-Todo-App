@@ -11,7 +11,6 @@ const inputStyle = {
   margin: '1vw'
 };
 
-
 class Register extends React.Component {
 
   constructor(props) {
@@ -50,9 +49,7 @@ componentDidMount() {
    });
  }
  
-  handleSubmit = (e) => {
-   
-    
+  handleSubmit = (e) => {   
     e.preventDefault();
     const data = new FormData(e.target);
     const self = this;
@@ -69,7 +66,6 @@ componentDidMount() {
  
   if((res.data).hasOwnProperty('errors')) {
      //load the msg property into a variable
- 
   //push msgs to an array. 
   //push params to an array
   //flash the individual messages 1.5 seconds apart
@@ -110,6 +106,7 @@ const flashErrors = (fn, delay) => {
 };
 
 messages.forEach(flashErrors(display, delay));
+
    //use the params array to setState one time for each param
    
    function emptyFields(param) {
@@ -124,8 +121,7 @@ messages.forEach(flashErrors(display, delay));
         displayFlashMsg: false,
        [param]: ''
       });
-    }
-  
+    }  
     
    }
 
@@ -134,7 +130,6 @@ messages.forEach(flashErrors(display, delay));
  }, paramDelay) ;
     
     console.log('stateafterflash', self.state);
-
 
     //if there are not errors, return success message
   } else {
@@ -159,8 +154,7 @@ messages.forEach(flashErrors(display, delay));
 });
         
 }   
-    
-    
+        
   render() {
     console.log('rendering Register');
     //conditionally rendering the login page
@@ -169,14 +163,11 @@ messages.forEach(flashErrors(display, delay));
     }
     return (
       <div> 
-      <h1 >To-Do Sign Up</h1>
+      <h1 style={buttonStyle}>To-Do Sign Up</h1>
       <h5 className={this.state.msg === 'Registration Successful' ? 'displayFlashSuccess' : this.state.displayFlashMsg ? 'displayFlash' : 'hideFlash'}
       
       >{this.state.msg}</h5>
-      <form onSubmit={this.handleSubmit}>
-     
-      
-    
+      <form onSubmit={this.handleSubmit}>   
       <input ref={this.textInput} style= {inputStyle} placeholder="name"  id='name' onChange={this.handleChange}  value={this.state.name} name='name' type='text'   />
         <input style= {inputStyle}  placeholder="email"  id='email' onChange={this.handleChange}  value={this.state.email} name='email' type='text'    />
         <input style= {inputStyle} placeholder='username'  id='username' onChange={this.handleChange} value={this.state.username} name='username' type='text'   />
@@ -186,8 +177,7 @@ messages.forEach(flashErrors(display, delay));
         <button  style= {buttonStyle} type='submit' >Submit</button>
       </form>
       </div>
-     
-      
+           
     );
   }
 }

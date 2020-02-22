@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "../App.css";
 
-
-
 class Modal extends Component {
   componentDidMount() {
     this.nameInput.focus();

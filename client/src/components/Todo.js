@@ -7,17 +7,12 @@ import Modal from "./Modal";
 import "../App.css";
 import { truncateDate } from "../helpers";
 
-
-
 /*This is the stateful class component that gets displayed in the main 
 React App component*/
-
 class Todo extends Component {
 
   constructor(props) {
     super(props);
-
-
 
   this.state = {
     todos: [],
@@ -30,13 +25,10 @@ class Todo extends Component {
   }
   /*upon page load, an array of todos is queried from db and displayed.*/
 
-  componentDidMount() {
-    
-  this.getTodos();
-  
+  componentDidMount() {   
+  this.getTodos(); 
   }
   
-
   findUserName = () => {
     console.log('infindUserName');
      const user = this.props.location.state.username;
@@ -138,10 +130,9 @@ upon click of the todo item itself-TJR*/
     const username = this.props.location.state.username
     const name = `${!username  ? defaultTitle : `Welcome, ${ this.props.location.state.username}!`}`;
    
-    return (
-      
+    return (      
       <div>
-      
+             
           <h1>{name}</h1>
           
         <Modal

@@ -1,14 +1,7 @@
 
 
 
-  this.setState({
-        passwordVerified: false
-    })
 
-
-
-if (!this.dropdownMenu.contains(event.target)) {
-}
 
 
 

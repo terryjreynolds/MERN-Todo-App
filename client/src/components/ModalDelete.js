@@ -3,17 +3,13 @@ import "../App.css";
 import axios from "axios";
 import { Redirect } from 'react-router';
 
-
-
-
 class ModalDelete extends Component {
 
     constructor(props) {
         super(props);
 
         this.textInput = React.createRef();
-       
-       
+              
         this.state = {         
         action: '', 
         flash: '',
@@ -28,8 +24,7 @@ class ModalDelete extends Component {
           this.textInput.current.focus();
         }   
       }
-      
-      
+           
   modalUpdate = (e) => {
       this.setState({
         action: e.target.value
@@ -70,7 +65,6 @@ class ModalDelete extends Component {
   }
  //generates conditions for closing of dropdownmenu and redirect to dashboard 
   resetAll = (url) => {
-
     setTimeout(this.modalDeleteUpdate, 1500);
     setTimeout(() => { this.setState({
       redirect: url,
@@ -120,20 +114,17 @@ class ModalDelete extends Component {
         .catch(err => console.log(err));
     };
 
-    handleLogout = (id) => { 
-    
+    handleLogout = (id) => {    
       //hit the logout endpoint
       axios
       .post(`/users/logout`)
       .then(res => {
         if (res.data) {
           console.log('redirectobj', res.data.redirect);               
-          this.deleteUserAccount(id, res.data.redirect);
-           
+          this.deleteUserAccount(id, res.data.redirect);        
         }
       })
-      
-     
+          
       .catch(err => console.log(err));
        
       };    
@@ -159,31 +150,25 @@ return <Redirect to={{
   }}
 />
  }
-    return (
-     
+    return (    
       <form
       className={this.props.showModalDelete ? "showModalDelete" : "hideModalDelete" }
-        onSubmit={this.authPassword}
-        
+        onSubmit={this.authPassword}      
       >
       <p style={{color: 'green'}}>{this.state.flash}</p>
-        <input
-        
+        <input       
           className="modalDeleteInput"
           onChange={this.modalUpdate}
           value={this.state.action}
           type='password'
           name="password"
           placeholder='Enter Password'
-          ref={this.textInput}
-          
-        />
-         
+          ref={this.textInput}         
+        />        
         <button style={buttonStyle} >Submit</button>
         <button style={buttonStyle} type="button" onClick={this.modalDeleteUpdate}>Cancel</button>
       </form>
-     
-     
+         
     );
   }
 }

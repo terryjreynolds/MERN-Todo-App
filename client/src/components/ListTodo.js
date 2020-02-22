@@ -44,7 +44,7 @@ class ListTodo extends Component {
             );
           })
         ) : (
-          <li>No todo(s) left</li>
+          <li>No todo(s)</li>
         )}
       </ul>
     );

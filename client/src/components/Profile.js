@@ -3,7 +3,6 @@ import axios from "axios";
 import { Redirect } from 'react-router';
 
 
-
 const buttonStyle = {
   display: 'inline-block',
   margin: '1vw'
@@ -13,6 +12,10 @@ const inputStyle = {
   margin: '1vw'
 };
 
+const labelStyle = {
+  
+  margin: '1vw'
+};
 
 class Profile extends React.Component {
 
@@ -111,16 +114,16 @@ populateProfileFields = () => {
       }
     return (
       <div> 
-      <h1>Account Profile</h1>
+      <h1 style={buttonStyle}>Account Profile</h1>
       <h5 className={this.state.msg === 'Registration Successful' ? 'displayFlashSuccess' : this.state.displayFlashMsg ? 'displayFlash' : 'hideFlash'}
       
       >{this.state.msg}</h5>
       <form onSubmit={this.handleSubmit}> 
-      <label for="name">First name:</label>  
+      <label for="name" style={labelStyle}>Name:</label>  
       <input ref={this.textInput} id='name' style= {inputStyle} placeholder="name" onChange={this.handleChange}  value={this.state.name} name='name' type='text'   />
-      <label for="email">Email:</label>
+      <label for="email" style={labelStyle}>Email:</label>
         <input style= {inputStyle} id='email'  placeholder="email" onChange={this.handleChange}  value={this.state.email} name='email' type='text'    />
-        <label for="username">Username:</label>
+        <label for="username" style={labelStyle}>Username:</label>
         <input style= {inputStyle} id='username'  placeholder='username' onChange={this.handleChange} value={this.state.username} name='username' type='text' />      
         <button  style= {buttonStyle} type='submit' >Save</button>
          <button onClick={this.goBack} style= {buttonStyle}>Cancel</button>

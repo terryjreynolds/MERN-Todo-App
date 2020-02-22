@@ -17,8 +17,6 @@ class DropDownMenu extends Component {
     this.closeMenu = this.closeMenu.bind(this);
   }
   
-  
-
   showMenu(event) {
     console.log('inshowMenu');
     event.preventDefault();

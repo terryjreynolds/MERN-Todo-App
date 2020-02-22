@@ -1,8 +1,6 @@
 import React from "react";
 
-
 class Dashboard extends React.Component {
-
 
   constructor(props) {
     super(props);
@@ -11,18 +9,14 @@ class Dashboard extends React.Component {
         
     };
 
-  
   }
-
-
 
   render() {
    console.log('rendering Dashboard');
     return (
         <div className="dashboardTitle"> 
             <h1>The Obligatory ToDo App</h1>
-            <h4>Let's Todo together</h4>
-      
+            <h4>Todo Together</h4>      
       </div>
     );
   }
