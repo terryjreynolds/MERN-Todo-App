@@ -19,7 +19,7 @@ class Login extends React.Component {
  
     //create a ref for username field on login form
 this.loginInput = React.createRef();
-
+this.passwordInput = React.createRef();
     this.state = {
       
       username: "",
@@ -27,7 +27,8 @@ this.loginInput = React.createRef();
       toHome: false,
       sessionUserName: '',
       displayFlashMsg: false,
-      msg: ''
+      msg: '',
+      cursorInUser: true
         
     };
 
@@ -35,7 +36,20 @@ this.loginInput = React.createRef();
   }
 
   componentDidMount(){
-    this.loginInput.current.focus();
+    if(this.state.cursorInUser) {
+      this.loginInput.current.focus();
+    }else {
+this.passwordInput.current.focus();
+    }
+    
+  }
+  componentDidUpdate() {
+    if(this.state.cursorInUser) {
+      this.loginInput.current.focus();
+    }else {
+      this.passwordInput.current.focus();
+    }
+    
   }
 
  handleChange = (e) => {
@@ -62,7 +76,9 @@ this.loginInput = React.createRef();
         
     })
     .then(function (res) {
-
+      //this method only receives the msg string back-three posibiliities
+      //missing credentials, user not found  wrong password
+console.log('completeRes', res.data);
       if(res.data.username) {
         console.log('fullresponse', res);
         console.log('response', res.data.username);
@@ -72,23 +88,52 @@ this.loginInput = React.createRef();
        
         self.setState({toHome: true});
       } else {
-        console.log('error', res.data);
+        
         self.setState({
           msg: res.data,
           displayFlashMsg: true
         });
       }
+
+      let errorMsg = res.data
+        console.log('errorMsg', errorMsg);
       
-      setTimeout(function() {
+      if(errorMsg === 'Missing credentials' || errorMsg === 'No user found') {
+
+        setTimeout(function() {
       
-        self.setState({
-        displayFlashMsg: false,
-        msg: "",
-        username: '',
-        password: ''
-      });
+          self.setState({
+          displayFlashMsg: false,
+          msg: "",
+          username: '',
+          password: '',
+          cursorInUser: true
+        });
+        
+        }, 1500);
+
+
+      } else {
+        setTimeout(function() {
       
-      }, 1500);
+          self.setState({
+          displayFlashMsg: false,
+          msg: "",
+          password: '',
+          cursorInUser: false
+        });
+        
+        }, 1500);
+//immediately reset cursorInUser to remount
+        // setTimeout(function() {
+      
+        //   self.setState({
+        //   cursorInUser: true
+        // });
+        
+        // }, 1500);
+      }
+      
       
     })
   }
@@ -114,7 +159,7 @@ this.loginInput = React.createRef();
       <h5 className={this.state.displayFlashMsg ? 'displayFlash' : 'hideFlash'}     
       >{this.state.msg}</h5>
       <input ref={this.loginInput} style= {inputStyle} placeholder='username'  id='username' onChange={this.handleChange} value={this.state.username} name='username' type='text'   />
-        <input style= {inputStyle}  placeholder='password ' id='password'  onChange={this.handleChange} value={this.state.password} name='password' type='password'    />
+        <input ref={this.passwordInput} style= {inputStyle}  placeholder='password ' id='password'  onChange={this.handleChange} value={this.state.password} name='password' type='password'    />
         <button style={buttonStyle} type='submit'>Submit</button>
       </form>
       </div>
