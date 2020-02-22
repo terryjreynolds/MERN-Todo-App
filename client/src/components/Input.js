@@ -14,7 +14,9 @@ class Input extends Component {
 
   this.state = {
     action: "",
-    edited: truncateDate(Date())
+    edited: truncateDate(Date()),
+    displayFlash: false,
+    msg: ''
   };
 
 }
@@ -23,9 +25,10 @@ componentDidMount(){
   this.textInput.current.focus();
 }
 
+
   addTodo = e => {
     e.preventDefault();
-
+const self = this;
     const task = { action: this.state.action, edited: (this.state.edited)[0]};
     console.log('task', task);
 
@@ -34,16 +37,60 @@ componentDidMount(){
         .put("/api/todos", task)
         .then(res => {
           console.log("res", res);
-          if (res.data) {
-            this.props.getTodos();
-            this.setState({ action: "" });
+          if((res.data).hasOwnProperty('failure')) {
+            //push the failure msg to an array so the flash functions
+            //receive the correct data structure
+            let messages = [];
+             messages.push(res.data.failure);
+            console.log('messages', messages);
+           
+          const delay = 2000;
+                   
+          //displays the flash messages
+          function display(str) {
+            console.log(str);
+            self.setState({
+              displayFlash: true,
+              msg: str  
+            });
+          
           }
-        })
-        .catch(err => console.log(err));
-    } else {
-      console.log("input field required");
-    }
-  };
+          
+          //loop through the messages and pass to function that will display them
+          const flashErrors = (fn, delay) => {
+            return (msg, i) => {
+              setTimeout(() => {
+                //the function to setState
+                fn(msg);
+              }, i * delay);
+            }
+          };
+          
+          messages.forEach(flashErrors(display, delay));
+                    
+           setTimeout(function() {
+           self.setState({
+            displayFlash: false,
+            action: '',
+            edited: []
+          }); 
+              console.log('stateafterflash', self.state);
+          }, delay);
+
+        } else if (res.data){
+
+            this.props.getTodos();
+            self.setState({ action: "" });
+        }
+      
+      })
+    
+      .catch(err => console.log(err));
+    } 
+        
+  };    
+    
+  
 
   handleChange = e => {
     this.setState({
@@ -51,11 +98,18 @@ componentDidMount(){
     });
   };
 
+
   render() {
+    console.log('rendering input')
     let { action } = this.state;
 
+  
+
     return (
+<div>
+    <h5  style={{display: 'inlineBlock'}} className={this.state.displayFlash ? 'displayFlash' : 'hideFlash'}>{this.state.msg}</h5> 
       <form onSubmit={this.addTodo}>
+      
         <input
         ref={this.textInput}
           placeholder="Create a new to-do item"
@@ -63,9 +117,10 @@ componentDidMount(){
           onChange={this.handleChange}
           value={action}
         />
-
         <button type="submit">Submit</button>
       </form>
+      </div>
+      
     );
   }
 }

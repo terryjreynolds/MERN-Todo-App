@@ -5,5 +5,15 @@
 
 
 
-
+if(isEmpty === null) {
+  console.log('im in update else');
+  User.updateOne(
+    { _id: req.user._id},
+    
+    {tasks: task}
+    
+  )
+  .then(data => res.json(data))
+    .catch(next);
+ }
     

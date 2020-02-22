@@ -19,7 +19,8 @@ router.get("/get/todos", (req, res, next) => {
 
 // take the object passed to req --action and edited--
 // find the document registered to the current session and create those 
-//properties in a sub-object on the document. If no document, redirect to signup screen
+//properties in a sub-object on the document. If no document, 
+//redirect to signup screen
 router.post("/todos", (req, res, next) => {
   console.log('im in post todo');
   if (req.body.action) {
@@ -70,35 +71,35 @@ router.delete("/deleteAccount/:id", function (req, res){
   })
   });
 
-/*Terry made this one as a first step toward editing db posts. I think it should identify a post by its id and allow me to call a function to update its contents, but idk*/
+/*Terry made this one. His first route*/
 router.put("/todos/", (req, res, next) => {
   console.log('im in put');
   console.log('put req',req.body);
   const task = req.body.task;
-  const isEmpty = (req.user.tasks).length;
+  const isEmpty = (req.user.tasks);
  console.log('isEmpty', isEmpty);
- if(isEmpty.length !== 0) {
-   console.log('im in regular update');
-  User.updateOne(
-    { _id: req.user._id},
-    
-    {$push: {tasks: req.body}}
-    
-  )
-  .then(data => res.json(data))
-    .catch(next);
- } else {
-   console.log('im in update else');
-  User.updateOne(
-    { _id: req.user._id},
-    
-    {tasks: task}
-    
-  )
-  .then(data => res.json(data))
-    .catch(next);
- }
-    
+
+ //if the length is > 10, error msg and reset fields
+ //if  !== 0, push
+ // otherwise, create the array
+
+if(isEmpty) {
+  console.log('im in regular update');
+
+  if(isEmpty.length < 10) {
+    User.updateOne(
+      { _id: req.user._id},
+      
+      {$push: {tasks: req.body}}
+      
+    )
+    .then(data => res.json(data))
+      .catch(next);
+  
+} else {
+  return res.json({failure: "You've exceeded the max limit of 10 todos"})
+}
+}  
 });
 
 //a put route to handle updating pre-existing tasks userid.tasks.editatbleId
