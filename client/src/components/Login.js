@@ -164,8 +164,6 @@ console.log('completeRes', res.data);
     })
   }
 
- 
-
   render() {
     
     //conditionally rendering the home page
