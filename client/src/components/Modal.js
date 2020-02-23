@@ -2,8 +2,20 @@ import React, { Component } from "react";
 import "../App.css";
 
 class Modal extends Component {
-  componentDidMount() {
-    this.nameInput.focus();
+//this component helps the user edit an existing todo
+
+  constructor(props) {
+    super(props);
+
+  this.modalInput = React.createRef();
+  }
+  componentDidUpdate() {
+    this.modalInput.current.focus();
+  }
+
+  //highlight the todo text to be edited
+  handleFocus = (e) => {
+e.target.select();
   }
 
   render() {
@@ -14,9 +26,8 @@ class Modal extends Component {
         onSubmit={this.props.sendModalActionToDatabase}
       >
         <input
-          ref={input => {
-            this.nameInput = input;
-          }}
+        onFocus={this.handleFocus}
+          ref={this.modalInput}
           className="modalInput"
           onChange={this.props.modalUpdate}
           type="text"

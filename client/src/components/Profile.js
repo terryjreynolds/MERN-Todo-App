@@ -3,20 +3,6 @@ import axios from "axios";
 import { Redirect } from 'react-router';
 
 
-const buttonStyle = {
-  display: 'inline-block',
-  margin: '1vw'
-};
-
-const inputStyle = {
-  margin: '1vw'
-};
-
-const labelStyle = {
-  
-  margin: '1vw'
-};
-
 class Profile extends React.Component {
 
   constructor(props) {
@@ -112,6 +98,21 @@ populateProfileFields = () => {
       }}
   />
       }
+
+      const buttonStyle = {
+        display: 'inline-block',
+        margin: '1vw'
+      };
+      
+      const inputStyle = {
+        margin: '1vw'
+      };
+      
+      const labelStyle = {
+        fontSize: '2vw',
+        margin: '0 0 0 1vw'
+      };
+
     return (
       <div> 
       <h1 style={buttonStyle}>Account Profile</h1>

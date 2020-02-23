@@ -2,14 +2,6 @@ import React from "react";
 import axios from "axios";
 import { Redirect } from 'react-router';
 
-const buttonStyle = {
-  display: 'block',
-  margin: '1vw'
-};
-
-const inputStyle = {
-  margin: '1vw'
-};
 
 class Register extends React.Component {
 
@@ -161,9 +153,19 @@ messages.forEach(flashErrors(display, delay));
     if (this.state.toLogin === true) {
       return <Redirect to='/login' />
     }
+
+    const buttonStyle = {
+      display: 'block',
+      margin: '1vw'
+    };
+    
+    const inputStyle = {
+      margin: '1vw'
+    };
+
     return (
       <div> 
-      <h1 style={buttonStyle}>To-Do Sign Up</h1>
+      <h1 style={inputStyle}>To-Do Sign Up</h1>
       <h5 className={this.state.msg === 'Registration Successful' ? 'displayFlashSuccess' : this.state.displayFlashMsg ? 'displayFlash' : 'hideFlash'}
       
       >{this.state.msg}</h5>

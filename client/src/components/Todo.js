@@ -153,7 +153,7 @@ const self = this;
       <div>
              
           <h1>{name}</h1>
-          <h5  style={{display: 'inlineBlock'}} className={this.state.displayFlash ? 'displayFlash' : 'hideFlash'}>{this.state.msg}</h5>
+          <h5 className={this.state.displayFlash ? 'displayFlash' : 'hideFlash'}>{this.state.msg}</h5>
         <Modal
           cancelEditing={this.cancelEditing}
           modalUpdate={this.modalUpdate}

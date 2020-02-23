@@ -35,9 +35,10 @@ this.passwordInput = React.createRef();
     
     axios.defaults.withCredentials = true;
   }
-
+//made lifecycle methods here conditional on focus being defined. Why? When 
+//user login was successful an error would throw because focus was undefined
   componentDidMount(){
-    console.log('compoenentDidMount Login');
+    console.log('componentDidMount Login');
     let focus = this.loginInput.current;
     console.log('focus', focus);
     if(focus) {
@@ -60,6 +61,7 @@ this.passwordInput = React.createRef();
    
   };
 
+  //when user inputs text, it controls where the cursor will be
   toggleInUser = () => {
     if(this.cursorInUser) {
       this.setState({
@@ -71,11 +73,6 @@ this.passwordInput = React.createRef();
       });
     }
   }
-
-  componentWillUnmount() {
-    console.log('unmounting');
-  }
-
 
  handleChange = (e) => {
   console.log('e', e.target.name);

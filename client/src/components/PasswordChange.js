@@ -2,14 +2,6 @@ import React from "react";
 import axios from "axios";
 import { Redirect } from 'react-router';
 
-const buttonStyle = {
-  display: 'inline-block',
-  margin: '1vw'
-};
-
-const inputStyle = {
-  margin: '1vw'
-};
 
 class PasswordChange extends React.Component {
 
@@ -34,7 +26,8 @@ this.textInputTwo = React.createRef();
       newPassword: '',
       displayFlash: false,
       flash: '',
-      msg: 'hi'
+      msg: 'hi',
+      flashColor: ''
     }
   }
 
@@ -203,7 +196,8 @@ console.log('in verifyCurrentPassword');
              console.log('resdata', res.success);
              self.setState({
                displayFlash: true,
-               msg: res.data.success
+               msg: res.data.success,
+               flashColor: 'green'
              });
            
              setTimeout(function() {
@@ -212,7 +206,8 @@ console.log('in verifyCurrentPassword');
                displayFlash: false,
                msg: "",
                toLogin: true,
-               userUpdated: true, 
+               userUpdated: true,
+               flashColor: '' 
             
              });
              
@@ -239,11 +234,20 @@ console.log('in verifyCurrentPassword');
         return <Redirect to='/login' />
       }
       
+      const buttonStyle = {
+        display: 'inline-block',
+        margin: '1vw'
+      };
+      
+      const inputStyle = {
+        margin: '1vw'
+      };
+      
     return (
       <div> 
       <h1 style={inputStyle}>{!this.state.passwordVerified ? "Verify Old Password" : "New Password"}</h1>
       
-      <h5 className={this.state.displayFlash ? 'displayFlash' : 'hideFlash'}      
+      <h5 className={this.state.displayFlash && this.state.flashColor === 'green' ? 'displayFlashSuccess' : this.state.displayFlash ? 'displayFlash' : 'hideFlash'}      
       >{this.state.passwordVerified ? this.state.msg : this.state.flash}</h5>
       <form onSubmit={this.state.passwordVerified ? this.changePassword : this.verifyCurrentPassword}>   
       <input className={!this.state.passwordVerified ? "showModal" : "hideModal"} ref={this.textInput} style= {inputStyle} placeholder="Enter Old Password"  id='name' onChange={this.handleChange} value={this.state.oldPassword} name='oldPassword' type='text'   />
