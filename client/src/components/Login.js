@@ -2,14 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Redirect } from 'react-router';
 
-const buttonStyle = {
-  
-  margin: '1vw'
-};
 
-const inputStyle = {
-  margin: '1vw'
-};
 
 class Login extends React.Component {
 
@@ -175,16 +168,32 @@ console.log('completeRes', res.data);
 />
     }
     console.log('rendering Login');
+
+    const buttonStyle = {
+   textAlign: 'left',
+      marginLeft: '4vw'
+    };
+
+    const headingStyle = {
+      textAlign: 'left',
+         marginLeft: '4.8vw'
+       };
+    
+    const inputStyle = {
+      margin: '1vw'
+    }
+      
     return (
-        <div> 
-            
-      <form  style={{paddingRight: '0px'}} onSubmit={this.handleSubmit}>
-      <h1 style={buttonStyle}>To-Do Login</h1>
+        <div  className='slideIn'> 
+         
+      <form  style={{textAlign: 'center'}} onSubmit={this.handleSubmit}>
+        <div style={headingStyle}><h1 >To-Do Login</h1> </div>
+      
       <h5 className={this.state.displayFlashMsg ? 'displayFlash' : 'hideFlash'}     
       >{this.state.msg}</h5>
       <input ref={this.loginInput} style= {inputStyle} placeholder='username'  id='username' onClick={this.toggleInUser} onChange={this.handleChange} value={this.state.username} name='username' type='text'   />
         <input ref={this.passwordInput} style= {inputStyle}  placeholder='password ' id='password' onClick={this.toggleInUser} onChange={this.handleChange} value={this.state.password} name='password' type='password'    />
-        <button style={buttonStyle} type='submit'>Submit</button>
+        <div style= {buttonStyle} ><button  type='submit'>Submit</button></div>
       </form>
       </div>
     );

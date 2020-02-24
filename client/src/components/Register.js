@@ -155,28 +155,33 @@ messages.forEach(flashErrors(display, delay));
     }
 
     const buttonStyle = {
-      display: 'block',
-      margin: '1vw'
-    };
-    
+      textAlign: 'left',
+         marginLeft: '4vw'
+       };
+   
+       const headingStyle = {
+         textAlign: 'left',
+            marginLeft: '4.8vw'
+          };
+
     const inputStyle = {
       margin: '1vw'
     };
 
     return (
       <div className='slideIn'> 
-      <h1 style={inputStyle}>To-Do Sign Up</h1>
+      <div style={headingStyle}><h1 >To-Do Sign Up</h1></div>
       <h5 className={this.state.msg === 'Registration Successful' ? 'displayFlashSuccess' : this.state.displayFlashMsg ? 'displayFlash' : 'hideFlash'}
       
       >{this.state.msg}</h5>
-      <form onSubmit={this.handleSubmit}>   
+      <form style={{textAlign: 'center'}} onSubmit={this.handleSubmit}>   
       <input ref={this.textInput} style= {inputStyle} placeholder="name"  id='name' onChange={this.handleChange}  value={this.state.name} name='name' type='text'   />
         <input style= {inputStyle}  placeholder="email"  id='email' onChange={this.handleChange}  value={this.state.email} name='email' type='text'    />
         <input style= {inputStyle} placeholder='username'  id='username' onChange={this.handleChange} value={this.state.username} name='username' type='text'   />
         <input style= {inputStyle}  placeholder='password ' id='password'  onChange={this.handleChange} value={this.state.password} name='password' type='password'    />
         <input style= {inputStyle} placeholder="confirm password"  id='password2'  onChange={this.handleChange} value={this.state.confirm} name='confirm' type='password'     />
         
-        <button  style= {buttonStyle} type='submit' >Submit</button>
+        <div style= {buttonStyle} ><button  type='submit' >Submit</button></div>
       </form>
       </div>
            

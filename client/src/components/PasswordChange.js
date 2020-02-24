@@ -235,26 +235,33 @@ console.log('in verifyCurrentPassword');
       }
       
       const buttonStyle = {
-        display: 'inline-block',
-        margin: '1vw'
-      };
+        padding: '0',
+           marginLeft: '4vw'
+         };
+
+         const headingStyle = {
+           display: 'inline',
+           textAlign: 'left',
+              marginLeft: '4.8vw'
+              
+            };
       
       const inputStyle = {
-        margin: '1vw'
+        margin: '1vw auto'
       };
       
     return (
-      <div className='slideIn'> 
-      <h1 style={inputStyle}>{!this.state.passwordVerified ? "Verify Old Password" : "New Password"}</h1>
+      <div   className='slideIn'> 
+      <h1 style={headingStyle}>{!this.state.passwordVerified ? "Verify Old Password" : "New Password"}</h1>
       
       <h5 className={this.state.displayFlash && this.state.flashColor === 'green' ? 'displayFlashSuccess' : this.state.displayFlash ? 'displayFlash' : 'hideFlash'}      
       >{this.state.passwordVerified ? this.state.msg : this.state.flash}</h5>
       <form onSubmit={this.state.passwordVerified ? this.changePassword : this.verifyCurrentPassword}>   
-      <input className={!this.state.passwordVerified ? "showModal" : "hideModal"} ref={this.textInput} style= {inputStyle} placeholder="Enter Old Password"  id='name' onChange={this.handleChange} value={this.state.oldPassword} name='oldPassword' type='text'   />
-      <input className={this.state.passwordVerified ? "showModal" : "hideModal"} ref={this.textInputTwo} style= {inputStyle}  placeholder='New password ' id='password'  onChange={this.handleChange} value={this.state.newPassword} name='newPassword' type='password'    />
+      <input  className={!this.state.passwordVerified ? "showModal" : "hideModal"} ref={this.textInput} style= {inputStyle} placeholder="Enter Old Password"  id='name' onChange={this.handleChange} value={this.state.oldPassword} name='oldPassword' type='password'   />
+      <input className={this.state.passwordVerified ? "showModal" : "hideModal"} ref={this.textInputTwo}  style= {inputStyle}  placeholder='New password ' id='password'  onChange={this.handleChange} value={this.state.newPassword} name='newPassword' type='password'    />
         <input className={this.state.passwordVerified ? "showModal" : "hideModal"} style= {inputStyle} placeholder="Confirm new password"  id='password2'  onChange={this.handleChange} value={this.state.confirm} name='confirm' type='password'     />
-        <button  style= {buttonStyle} type='submit' >Submit</button>
-         <button onClick={this.goBack} style= {buttonStyle}>Cancel</button>
+        <div style ={buttonStyle}><button type='submit' >Submit</button>
+         <button onClick={this.goBack}>Cancel</button></div>
       </form>
       </div>
      
