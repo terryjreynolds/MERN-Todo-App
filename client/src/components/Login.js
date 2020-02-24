@@ -178,7 +178,7 @@ console.log('completeRes', res.data);
     return (
         <div> 
             
-      <form className='slideIn' onSubmit={this.handleSubmit}>
+      <form  style={{paddingRight: '0px'}} onSubmit={this.handleSubmit}>
       <h1 style={buttonStyle}>To-Do Login</h1>
       <h5 className={this.state.displayFlashMsg ? 'displayFlash' : 'hideFlash'}     
       >{this.state.msg}</h5>
