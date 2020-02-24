@@ -40,7 +40,7 @@ console.log('rendering Navbar');
     return (
         <div className="navbar"> 
        
-            <h1>Todo           
+            <h1>Todo App          
             </h1>
             
             <div className="navLinksWrapper">

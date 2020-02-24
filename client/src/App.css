@@ -197,10 +197,6 @@ li {
  a:hover, .dropDownButton:hover  {
   opacity: .8;
 }
-
-.dashboardTitle {
- text-align: center;
-}
 footer {
   position: fixed;
   bottom: 0;
@@ -215,4 +211,41 @@ footer p {
   color: whitesmoke;
   margin: 0;
   font-size: calc(10px + (16 - 10) * ((100vw - 300px) / (1600 - 300)));
+}
+/***********************Animations**************************/
+
+.slideIn{
+  animation: slideIn .5s;
+}
+@keyframes slideIn {
+  0% {
+    position: relative;
+    left: -1000px;
+  }
+  100% {
+    position: relative;
+    left: 0;
+  }
+    
+}
+
+.dashboardTitle {
+  text-align: center;
+  animation: slideDown .3s;
+ }
+ @keyframes slideDown {
+  0% {
+    position: relative;
+    top: -1000px;
+    transform: rotate(360deg);
+  }
+  50% {
+    transform: rotate(-360deg);
+  }
+  100% {
+    position: relative;
+    top: 0;
+    transform: rotate(0deg);
+  }
+    
 }

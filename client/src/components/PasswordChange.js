@@ -244,7 +244,7 @@ console.log('in verifyCurrentPassword');
       };
       
     return (
-      <div> 
+      <div className='slideIn'> 
       <h1 style={inputStyle}>{!this.state.passwordVerified ? "Verify Old Password" : "New Password"}</h1>
       
       <h5 className={this.state.displayFlash && this.state.flashColor === 'green' ? 'displayFlashSuccess' : this.state.displayFlash ? 'displayFlash' : 'hideFlash'}      

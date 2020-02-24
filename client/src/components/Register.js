@@ -139,7 +139,7 @@ messages.forEach(flashErrors(display, delay));
       toLogin: true
     });
     
-    }, 3000);
+    }, 1800);
   }
  
   
@@ -164,7 +164,7 @@ messages.forEach(flashErrors(display, delay));
     };
 
     return (
-      <div> 
+      <div className='slideIn'> 
       <h1 style={inputStyle}>To-Do Sign Up</h1>
       <h5 className={this.state.msg === 'Registration Successful' ? 'displayFlashSuccess' : this.state.displayFlashMsg ? 'displayFlash' : 'hideFlash'}
       

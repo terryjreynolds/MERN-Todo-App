@@ -150,7 +150,7 @@ const self = this;
    
   
     return (      
-      <div>
+      <div className='slideIn'>
              
           <h1>{name}</h1>
           <h5 className={this.state.displayFlash ? 'displayFlash' : 'hideFlash'}>{this.state.msg}</h5>
