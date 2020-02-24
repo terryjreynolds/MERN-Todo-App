@@ -104,6 +104,7 @@ const self = this;
       <form onSubmit={this.addTodo}>
       
         <input
+        style={{marginTop: '1vw'}}
         ref={this.textInput}
           placeholder="Create a new to-do item"
           type="text"

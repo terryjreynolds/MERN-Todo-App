@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
+import Footer from "./components/Footer";
 import PasswordChange from "./components/PasswordChange";
 
 class App extends Component{
@@ -46,7 +47,7 @@ this.setState({
 <Route path='/profile' component={Profile} />
 <Route path='/passwordChange' component={PasswordChange} />
       </Switch>
-      
+      <Footer />    
     </div>
     </BrowserRouter>
   );

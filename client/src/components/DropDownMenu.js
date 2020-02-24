@@ -100,8 +100,8 @@ class DropDownMenu extends Component {
                   this.dropdownMenu = element;
                 }}
               >
-              <Link to="/profile"><button onClick={this.closeMenu}style={listItemStyle}>Profile</button> </Link>
-              <Link to="/passwordChange"><button onClick={this.closeMenu}style={listItemStyle}>Change Password</button> </Link>
+              <Link style={{textDecoration: 'none'}} to="/profile"><button onClick={this.closeMenu}style={listItemStyle}>Profile</button> </Link>
+              <Link style={{textDecoration: 'none'}} to="/passwordChange"><button onClick={this.closeMenu}style={listItemStyle}>Change Password</button> </Link>
               <button onClick ={ this.handleClick } style={listItemStyle}> Delete Account</button>
                 <button onClick={ this.handleLogout } style={listItemStyle}>Logout</button>
                 

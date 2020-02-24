@@ -200,5 +200,19 @@ li {
 
 .dashboardTitle {
  text-align: center;
-
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  background-color: black;
+  color: whitesmoke;
+  text-shadow: 1px 1px black;
+}
+footer p {
+  color: whitesmoke;
+  margin: 0;
+  font-size: calc(10px + (16 - 10) * ((100vw - 300px) / (1600 - 300)));
 }
