@@ -98,36 +98,43 @@ populateProfileFields = () => {
       }}
   />
       }
-
       const buttonStyle = {
-        display: 'inline-block',
-        margin: '1vw'
-      };
+        padding: '0',
+        textAlign: 'left',
+           marginLeft: '4vw'
+         };
+
+         const headingStyle = {
+           display: 'inline',
+           textAlign: 'left',
+              marginLeft: '4.8vw'
+              
+            };
       
       const inputStyle = {
-        margin: '1vw'
+        margin: '1vw auto'
       };
       
       const labelStyle = {
+        textAlign: 'left',
         fontSize: '2vw',
-        margin: '0 0 0 1vw'
+        marginLeft: '4.8vw'       
       };
 
     return (
       <div> 
-      <h1 style={buttonStyle}>Account Profile</h1>
-      <h5 className={this.state.msg === 'Registration Successful' ? 'displayFlashSuccess' : this.state.displayFlashMsg ? 'displayFlash' : 'hideFlash'}
-      
+      <h1 style={headingStyle}>Account Profile</h1>
+      <h5 className={this.state.msg === 'Registration Successful' ? 'displayFlashSuccess' : this.state.displayFlashMsg ? 'displayFlash' : 'hideFlash'}     
       >{this.state.msg}</h5>
-      <form onSubmit={this.handleSubmit}> 
+      <form style={{textAlign: 'center'}} onSubmit={this.handleSubmit}> 
       <label for="name" style={labelStyle}>Name:</label>  
       <input ref={this.textInput} id='name' style= {inputStyle} placeholder="name" onChange={this.handleChange}  value={this.state.name} name='name' type='text'   />
       <label for="email" style={labelStyle}>Email:</label>
         <input style= {inputStyle} id='email'  placeholder="email" onChange={this.handleChange}  value={this.state.email} name='email' type='text'    />
         <label for="username" style={labelStyle}>Username:</label>
         <input style= {inputStyle} id='username'  placeholder='username' onChange={this.handleChange} value={this.state.username} name='username' type='text' />      
-        <button  style= {buttonStyle} type='submit' >Save</button>
-         <button onClick={this.goBack} style= {buttonStyle}>Cancel</button>
+        <div style={buttonStyle}><button type='submit' >Save</button>
+         <button onClick={this.goBack}>Cancel</button></div>
       </form>
       </div>
      
