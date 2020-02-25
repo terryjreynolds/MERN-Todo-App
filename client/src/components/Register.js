@@ -170,7 +170,7 @@ messages.forEach(flashErrors(display, delay));
 
     return (
       <div className='slideIn'> 
-      <div style={headingStyle}><h1 >To-Do Sign Up</h1></div>
+      <div style={headingStyle}><h2 >To-Do Sign Up</h2></div>
       <h5 className={this.state.msg === 'Registration Successful' ? 'displayFlashSuccess' : this.state.displayFlashMsg ? 'displayFlash' : 'hideFlash'}
       
       >{this.state.msg}</h5>

@@ -117,13 +117,13 @@ populateProfileFields = () => {
       
       const labelStyle = {
         textAlign: 'left',
-        fontSize: '2vw',
+        fontSize: '1.5vw',
         marginLeft: '4.8vw'       
       };
 
     return (
       <div> 
-      <h1 style={headingStyle}>Account Profile</h1>
+      <h2 style={headingStyle}>Account Profile</h2>
       <h5 className={this.state.msg === 'Registration Successful' ? 'displayFlashSuccess' : this.state.displayFlashMsg ? 'displayFlash' : 'hideFlash'}     
       >{this.state.msg}</h5>
       <form style={{textAlign: 'center'}} onSubmit={this.handleSubmit}> 

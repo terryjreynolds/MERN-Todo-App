@@ -187,7 +187,7 @@ console.log('completeRes', res.data);
         <div  className='slideIn'> 
          
       <form  style={{textAlign: 'center'}} onSubmit={this.handleSubmit}>
-        <div style={headingStyle}><h1>To-Do Login</h1> </div>
+        <div style={headingStyle}><h2>To-Do Login</h2> </div>
       
       <h5 className={this.state.displayFlashMsg ? 'displayFlash' : 'hideFlash'}     
       >{this.state.msg}</h5>
