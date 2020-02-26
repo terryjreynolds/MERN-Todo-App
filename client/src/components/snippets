@@ -18,6 +18,6 @@ if(isEmpty === null) {
  }
     
 
-
+"concurrently \"npm run start-watch\" \"cd client && npm start\""
 
     

@@ -41,7 +41,7 @@ this.setState({
     <div  className="App">
       <Switch>
       <Route exact path='/' component={Dashboard} />
-<Route exact path='/Todo' component={Todo} />
+<Route path='/Todo' component={Todo} />
 <Route path='/register' component={Register} />
 <Route path='/login' render={(props) => <Login {...props} setUserState={ this.setUserState } userAuthState= {this.state.loggedIn}/>} />
 <Route path='/profile' component={Profile} />

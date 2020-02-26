@@ -160,6 +160,7 @@ messages.forEach(flashErrors(display, delay));
        };
    
        const headingStyle = {
+         display: 'inline',
          textAlign: 'left',
             marginLeft: '4.8vw'
           };

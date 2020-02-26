@@ -175,8 +175,10 @@ console.log('completeRes', res.data);
     };
 
     const headingStyle = {
+      
       textAlign: 'left',
-         marginLeft: '4.8vw'
+         marginLeft: '4.8vw',
+         display: 'inline'
        };
     
     const inputStyle = {
@@ -185,12 +187,10 @@ console.log('completeRes', res.data);
       
     return (
         <div  className='slideIn'> 
-         
-      <form  style={{textAlign: 'center'}} onSubmit={this.handleSubmit}>
-        <div style={headingStyle}><h2>To-Do Login</h2> </div>
-      
-      <h5 className={this.state.displayFlashMsg ? 'displayFlash' : 'hideFlash'}     
+        <h2 style={headingStyle}>To-Do Login</h2> 
+        <h5 className={this.state.displayFlashMsg ? 'displayFlash' : 'hideFlash'}     
       >{this.state.msg}</h5>
+      <form  style={{textAlign: 'center'}} onSubmit={this.handleSubmit}> 
       <input ref={this.loginInput} style= {inputStyle} placeholder='username'  id='username' onClick={this.toggleInUser} onChange={this.handleChange} value={this.state.username} name='username' type='text'   />
         <input ref={this.passwordInput} style= {inputStyle}  placeholder='password ' id='password' onClick={this.toggleInUser} onChange={this.handleChange} value={this.state.password} name='password' type='password'    />
         <div style= {buttonStyle} ><button  type='submit'>Submit</button></div>

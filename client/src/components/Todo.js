@@ -145,8 +145,7 @@ const self = this;
     let { todos } = this.state;
     console.log('todos', todos);
     const defaultTitle = 'The Obligatory Todo App';
-    const username = this.props.location.state.username
-    const name = `${!username  ? defaultTitle : `Welcome, ${ this.props.location.state.username}!`}`;
+    const name = `${this.props === {} ? defaultTitle : `Welcome, ${this.props.location ? this.props.location.state.username : ''}!`}`;
    
   
     return (      
