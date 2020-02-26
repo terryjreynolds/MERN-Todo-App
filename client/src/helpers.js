@@ -1,5 +1,6 @@
 export function truncateDate(d) {
   const date = d;
+  console.log(date);
   const everythingBeforeTimeZone = /(.*):\d{2}/g;
 
   const truncatedDate = date.match(everythingBeforeTimeZone);
