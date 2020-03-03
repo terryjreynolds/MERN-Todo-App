@@ -26,14 +26,15 @@ class App extends Component{
 
   setUserState(userState) {
 this.setState({
-  loggedIn: userState
+  loggedIn: userState 
 })
 
   }
   
+ 
  render() {
     console.log('rendering Appjs');
-    
+  
     return (
     
     <BrowserRouter>
@@ -50,6 +51,7 @@ this.setState({
       <Footer />    
     </div>
     </BrowserRouter>
+    
   );
   }
 };
