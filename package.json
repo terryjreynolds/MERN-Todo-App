@@ -7,7 +7,6 @@
     "start": "node index.js",
     "start-watch": "nodemon index.js",
     "dev": "concurrently \"yarn run start-watch\" \"cd client && yarn test:nowatch && yarn start\""
-   
   },
   "author": "T.Reynolds",
   "license": "MIT",
