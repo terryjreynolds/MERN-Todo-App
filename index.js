@@ -81,7 +81,7 @@ app.use(passport.session());
 //Home api route ie: the routes/api file
 app.use("/api", routes);
 
-//Route User Files
+//Route User Files here
 app.use("/users", users);
 
 //serve static assets if in production
