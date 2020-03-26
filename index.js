@@ -1,14 +1,13 @@
-
-//this file instantiates the server 
+//this file instantiates the server
 const express = require("express");
 const bodyParser = require("body-parser");
 // const cookieParser = require('cookie-parser');
 const mongoose = require("mongoose");
-const passport = require('passport');
+const passport = require("passport");
 const path = require("path");
 const session = require("express-session");
 const routes = require("./routes/api");
-const users = require('./routes/users');
+const users = require("./routes/users");
 
 require("dotenv").config();
 
@@ -40,7 +39,7 @@ app.use((req, res, next) => {
 
 //Body Parser Middleware
 //parse application/x-www-form-urlencoded
-app.use(require('body-parser').urlencoded({ extended: false }));
+app.use(require("body-parser").urlencoded({ extended: false }));
 
 //parse application/json
 app.use(bodyParser.json());
@@ -48,21 +47,23 @@ app.use(bodyParser.json());
 // app.use(cookieParser());
 
 //Set Public Folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
 //Express Session Middleware
-app.use(session({
-  secret: 'keyboard cat', //pick random string to make generated hash session id
-  resave: false, //required
-  saveUninitialized: false //required
-}));
+app.use(
+  session({
+    secret: "keyboard cat", //pick random string to make generated hash session id
+    resave: false, //required
+    saveUninitialized: false //required
+  })
+);
 
 app.use((req, res, next) => {
-  console.log('req.session', req.session);
+  console.log("req.session", req.session);
   return next();
-})
+});
 //Flash Messages
-app.use(require('connect-flash')());
+app.use(require("connect-flash")());
 
 //Express Messages Middleware
 // app.use(function (req, res, next) {
@@ -71,18 +72,26 @@ app.use(require('connect-flash')());
 // });
 
 //Passport Config
-require('./config/passport')(passport);
+require("./config/passport")(passport);
 
 //Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 //Home api route ie: the routes/api file
 app.use("/api", routes);
 
 //Route User Files
-app.use('/users', users);
+app.use("/users", users);
+
+//serve static assets if in production
+if (process.env.NODE_ENV === "production") {
+  //set static folder
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
