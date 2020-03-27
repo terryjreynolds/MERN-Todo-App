@@ -87,7 +87,7 @@ app.use("/api", routes);
 //Route User Files here ok
 app.use("/users", users);
 
-//serve static assets if in production
+//serve static assets if in production.
 if (process.env.NODE_ENV === "production") {
   //set static folder
   app.use(express.static("client/build"));
