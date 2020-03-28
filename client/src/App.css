@@ -25,7 +25,7 @@ h2 {
   font-family: "Roboto", sans-serif;
   color: #7f5a83;
 
-  font-size: calc(24px + (24 - 12) * ((100vw - 500px) / (1600 - 300)));
+  font-size: calc(18px + (18 - 12) * ((100vw - 500px) / (1600 - 300)));
 }
 input {
   border-radius: 8px;
@@ -56,7 +56,7 @@ input {
 }
 button {
   border-radius: 8px;
-  height: 3.0vw;
+  height: 3vw;
   border: none;
   width: 9vw;
   margin-left: 1vw;
@@ -73,10 +73,12 @@ button {
   top: 0;
 }
 .navLinksWrapper {
+  position: relative;
   display: inline-flex;
   align-items: flex-end;
   justify-content: flex-end;
   grid-column: 2 / span 1;
+  background-color: black;
 }
 
 .navLinksWrapper a {
@@ -173,16 +175,16 @@ li {
   display: none;
 }
 .dropDownMenu {
- width: 12vw;
+  width: 12vw;
+ position: absolute;
+ top: 3vw;
+ right: 1vw;
+ z-index: 3;
   background-color: black;
-
   border-radius: 8px;
   list-style: none;
 }
 .menuWrapper {
-  position: absolute;
-  top: 60%;
-  left: 87%;
   border-radius: 8px;
 }
 .dropDownButton {
@@ -249,22 +251,21 @@ footer p {
     top: 0;
     transform: rotate(0deg);
   }
-  
 }
 @media only screen and (max-width: 600px) {
-    h1 {
-  font-size: calc(20px + (20 - 18) * ((100vw - 500px) / (1600 - 300)));
-}
-.navItems {
-  font-size: calc(10px + (8 + 8) * ((100vw - 200px) / (1600 - 300)));
-}
-.dropDownButton {
-  font-size: calc(10px + (8 + 8) * ((100vw - 200px) / (1600 - 300)));
-}
-li {
-  font-size: 3.5vw;
-}
-input {
-  width: 45vw;
-}
+  h1 {
+    font-size: calc(20px + (20 - 18) * ((100vw - 500px) / (1600 - 300)));
   }
+  .navItems {
+    font-size: calc(10px + (8 + 8) * ((100vw - 200px) / (1600 - 300)));
+  }
+  .dropDownButton {
+    font-size: calc(10px + (8 + 8) * ((100vw - 200px) / (1600 - 300)));
+  }
+  li {
+    font-size: 3.5vw;
+  }
+  input {
+    width: 45vw;
+  }
+}

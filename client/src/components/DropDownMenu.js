@@ -76,7 +76,7 @@ class DropDownMenu extends Component {
     }
     const listItemStyle = {
       display: "block",
-      fontSize: "calc(12px + (3 + 8) * ((100vw - 600px) / (1600 - 300)))",
+      fontSize: "calc(5px + (3 + 8) * ((100vw - 100px) / (1600 - 300)))",
       marginBottom: "10px"
     };
 
