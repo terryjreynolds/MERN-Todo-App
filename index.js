@@ -36,7 +36,7 @@ app.use((req, res, next) => {
     "Origin, X-Requested-With, Content-Type, Accept"
   );
 
-  return next();
+  next();
 });
 
 //Body Parser Middleware
