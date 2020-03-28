@@ -35,7 +35,8 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
-  response.end();
+
+  return next();
 });
 
 //Body Parser Middleware
