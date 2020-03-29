@@ -74,11 +74,6 @@ class DropDownMenu extends Component {
         />
       );
     }
-    const listItemStyle = {
-      display: "block",
-      fontSize: "calc(5px + (3 + 8) * ((100vw - 100px) / (1600 - 300)))",
-      marginBottom: "10px"
-    };
 
     return (
       <div>
@@ -95,22 +90,24 @@ class DropDownMenu extends Component {
               }}
             >
               <Link style={{ textDecoration: "none" }} to="/profile">
-                <button onClick={this.closeMenu} style={listItemStyle}>
+                <button className="listButtons" onClick={this.closeMenu}>
                   Profile
                 </button>{" "}
               </Link>
               <Link style={{ textDecoration: "none" }} to="/passwordChange">
-                <button onClick={this.closeMenu} style={listItemStyle}>
+                <button className="listButtons" onClick={this.closeMenu}>
                   Change Password
                 </button>{" "}
               </Link>
-              <button onClick={this.handleClick} style={listItemStyle}>
-                {" "}
-                Delete Account
-              </button>
-              <button onClick={this.handleLogout} style={listItemStyle}>
+              <Link style={{ textDecoration: "none" }}>
+                <button className="listButtons" onClick={this.handleClick}>
+                  {" "}
+                  Delete Account
+                </button>
+              </Link>
+              <button className="listButtons" onClick={this.handleLogout}>
                 Logout
-              </button>
+              </button>{" "}
             </ul>
           </div>
         ) : null}
