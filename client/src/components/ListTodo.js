@@ -24,14 +24,14 @@ class ListTodo extends Component {
                 <input type="checkbox" className="checkbox" />
                 {todo.action}
                 <div
-                  style={iconDivStyle}
+                  id="icon1"
                   disabled={this.props.show ? true : false}
                   onClick={() => this.props.deleteTodo(todo._id)}
                 >
                   <IconTrash width={"3vw"} style={trashStyle} />
                 </div>
                 <div
-                  style={iconDivStyle}
+                  id="icon2"
                   disabled={this.props.show ? true : false}
                   onClick={() =>
                     this.props.editTodoModal(todo._id, todo.action)

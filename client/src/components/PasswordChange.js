@@ -242,7 +242,7 @@ console.log('in verifyCurrentPassword');
          const headingStyle = {
            display: 'inline',
            textAlign: 'left',
-              marginLeft: '4.8vw'
+              marginLeft: '5.5vw'
               
             };
       

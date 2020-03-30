@@ -90,24 +90,23 @@ class DropDownMenu extends Component {
               }}
             >
               <Link style={{ textDecoration: "none" }} to="/profile">
-                <button className="listButtons" onClick={this.closeMenu}>
+                <button class="listButtons" onClick={this.closeMenu}>
                   Profile
-                </button>{" "}
+                </button>
               </Link>
               <Link style={{ textDecoration: "none" }} to="/passwordChange">
-                <button className="listButtons" onClick={this.closeMenu}>
+                <button class="listButtons" onClick={this.closeMenu}>
                   Change Password
-                </button>{" "}
+                </button>
               </Link>
               <Link style={{ textDecoration: "none" }}>
-                <button className="listButtons" onClick={this.handleClick}>
-                  {" "}
+                <button class="listButtons" onClick={this.handleClick}>
                   Delete Account
                 </button>
               </Link>
-              <button className="listButtons" onClick={this.handleLogout}>
+              <button class="listButtons" onClick={this.handleLogout}>
                 Logout
-              </button>{" "}
+              </button>
             </ul>
           </div>
         ) : null}
