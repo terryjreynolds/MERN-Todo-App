@@ -82,7 +82,7 @@ class DropDownMenu extends Component {
         </div>
 
         {this.state.showMenu ? (
-          <div className="menuWrapper">
+          <nav role="navigation" className="menuWrapper">
             <ul
               className="dropDownMenu"
               ref={element => {
@@ -90,25 +90,24 @@ class DropDownMenu extends Component {
               }}
             >
               <Link style={{ textDecoration: "none" }} to="/profile">
-                <button class="listButtons" onClick={this.closeMenu}>
-                  Profile
-                </button>
+                <li onClick={this.closeMenu}>Profile</li>
               </Link>
               <Link style={{ textDecoration: "none" }} to="/passwordChange">
-                <button class="listButtons" onClick={this.closeMenu}>
-                  Change Password
-                </button>
+                <li onClick={this.closeMenu}>Change Password</li>
               </Link>
               <Link style={{ textDecoration: "none" }}>
-                <button class="listButtons" onClick={this.handleClick}>
-                  Delete Account
-                </button>
+                <li onClick={this.handleClick}>Delete Account</li>
               </Link>
-              <button class="listButtons" onClick={this.handleLogout}>
-                Logout
-              </button>
+              <Link style={{ textDecoration: "none" }}>
+                <div id="line"></div>
+              </Link>
+              <Link style={{ textDecoration: "none" }}>
+                <li id="logout" onClick={this.handleLogout}>
+                  Logout
+                </li>
+              </Link>
             </ul>
-          </div>
+          </nav>
         ) : null}
       </div>
     );

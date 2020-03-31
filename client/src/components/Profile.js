@@ -120,7 +120,7 @@ class Profile extends React.Component {
     };
 
     return (
-      <div>
+      <div className="slideIn">
         <h2 style={headingStyle}>Account Profile</h2>
         <h5
           className={
